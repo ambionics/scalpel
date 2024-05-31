@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="../favicon.ico">
+    <title>Installation</title>
+    
+    
+
+    
+    <link rel="stylesheet" href="../style.min.css">
+
+    
+
+    <meta name="generator" content="Hugo 0.111.3">
+</head>
+<body>
+
+<div class="columns container is-marginless">
+    <div id="sidebar" class="column is-one-quarter">
+        <div class="brand">
+	<a href="https://www.lexfo.fr/">
+		<img src='../logo-docs.svg' alt="scalpel docs" />
+	</a>
+</div>
+
+<nav class="menu">
+	<p class="menu-label">Overview</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../">Introduction</a>
+            
+        </li>
+    
+        <li>
+            <a class="is-active"
+               href="../overview-installation/">Installation</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-usage/">Usage</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-faq/">FAQ</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Features</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../feature-http/">Intercept and rewrite HTTP traffic</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../feature-editors/">Custom Burp editors</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Script Development</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../api/events.html">Event Hooks &amp; API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-java/">Using the Burp API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-debugging/">Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-examples/">Examples</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Tutorials</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../tute-first-steps/">First steps</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../tute-aes/">Decrypting custom encryption</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Core concepts</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../concepts-howscalpelworks/">How scalpel works</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Technical documentation</p>
+	<ul class="menu-list">
+		<li>
+			<a class="" href='../pdoc'>Python library</a>
+		</li>
+
+		<li>
+			<a class="" href='../javadoc'>Java extension</a>
+		</li>
+		<br />
+		<li>
+			<a class="" href="https://github.com/ambionics/scalpel">
+				<img
+					src='../github.svg'
+					alt="github"
+					style="
+						height: 16px;
+						vertical-align: middle;
+						margin-right: 5px;
+					"
+				/>
+				Github
+			</a>
+		</li>
+	</ul>
+</nav>
+
+    </div>
+    <div id="main" class="column content">
+        
+        
+<a
+	class="button is-small is-outlined is-link is-pulled-right"
+	target="_blank"
+	href="https://github.com/ambionics/scalpel/tree/docs/readme/docs/src/content/overview-installation.md"
+>
+	
+	Edit on GitHub
+</a>
+
+
+        <h1 id="installation"><a class="anchor" href="#installation">#&nbsp;&nbsp;</a>Installation</h1>
+<h2 id="requirements"><a class="anchor" href="#requirements">#&nbsp;&nbsp;</a>Requirements</h2>
+<ul>
+<li>OpenJDK &gt;= <code>17</code></li>
+<li>Python &gt;= <code>3.8</code></li>
+<li>pip</li>
+<li>python-virtualenv</li>
+</ul>
+<h3 id="debian-based-distributions"><a class="anchor" href="#debian-based-distributions">#&nbsp;&nbsp;</a>Debian-based distributions</h3>
+<p>The following packages are required:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install build-essential python3 python3-dev python3-venv openjdk-17-jdk
+</span></span></code></pre></div><h3 id="fedora--rhel--centos"><a class="anchor" href="#fedora--rhel--centos">#&nbsp;&nbsp;</a>Fedora / RHEL / CentOS</h3>
+<p>The following packages are required:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo dnf install @development-tools python3 python3-devel python3-virtualenv java-17-openjdk-devel
+</span></span></code></pre></div><h3 id="arch-based-distributions"><a class="anchor" href="#arch-based-distributions">#&nbsp;&nbsp;</a>Arch-based distributions</h3>
+<p>The following packages are required:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo pacman -S base-devel python python-pip python-virtualenv jdk-openjdk
+</span></span></code></pre></div><h3 id="windows"><a class="anchor" href="#windows">#&nbsp;&nbsp;</a>Windows</h3>
+<p>Microsoft Visual C++ &gt;=14.0 is required:
+<a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">https://visualstudio.microsoft.com/visual-cpp-build-tools/</a></p>
+<h2 id="step-by-step-instructions"><a class="anchor" href="#step-by-step-instructions">#&nbsp;&nbsp;</a>Step-by-step instructions</h2>
+<ol>
+<li>
+<p>Download the latest <a href="https://github.com/ambionics/scalpel/releases">JAR release</a>.
+<figure><img src="../screenshots/release.png"/>
+    </figure>
+</p>
+</li>
+<li>
+<p>Import the <code>.jar</code> to Burp.
+<figure><img src="../screenshots/import.png"/>
+    </figure>
+</p>
+</li>
+<li>
+<p>Wait for the dependencies to install.
+<figure><img src="../screenshots/wait.png"/>
+    </figure>
+</p>
+</li>
+<li>
+<p>Once Scalpel is properly initialized, you should get the following.
+<figure><img src="../screenshots/init.png"/>
+    </figure>
+</p>
+</li>
+<li>
+<p>If the installation was successful, a <code>Scalpel</code> tab should show in the Request/Response editor as follows:
+<figure><img src="../screenshots/tabs.png"/>
+    </figure>
+</p>
+</li>
+<li>
+<p>And also a <code>Scalpel</code> tab for configuration to install additional packages via terminal.
+<figure><img src="../screenshots/terminal.png"/>
+    </figure>
+</p>
+</li>
+</ol>
+<p>Scalpel is now properly installed and initialized!</p>
+<blockquote>
+<h3 id="-to-unload-and-reload-scalpel-you-must-restart-burp-simply-disabling-and-re-enabling-the-extension-will-not-work"><a class="anchor" href="#-to-unload-and-reload-scalpel-you-must-restart-burp-simply-disabling-and-re-enabling-the-extension-will-not-work">#&nbsp;&nbsp;</a>💡 To unload and reload Scalpel, you must restart Burp, simply disabling and re-enabling the extension will <strong>not</strong> work</h3>
+</blockquote>
+<h2 id="whats-next"><a class="anchor" href="#whats-next">#&nbsp;&nbsp;</a>What&rsquo;s next</h2>
+<ul>
+<li>Check the <a href="../overview-usage/">Usage</a> page to get a glimpse of how to use the tool.</li>
+<li>Read this <a href="../tute-aes/">tutorial</a> to see Scalpel in a real use case context.</li>
+</ul>
+
+
+    </div>
+</div>
+</body>
+</html>
+

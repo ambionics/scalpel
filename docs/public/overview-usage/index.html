@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="../favicon.ico">
+    <title>Usage</title>
+    
+    
+
+    
+    <link rel="stylesheet" href="../style.min.css">
+
+    
+
+    <meta name="generator" content="Hugo 0.111.3">
+</head>
+<body>
+
+<div class="columns container is-marginless">
+    <div id="sidebar" class="column is-one-quarter">
+        <div class="brand">
+	<a href="https://www.lexfo.fr/">
+		<img src='../logo-docs.svg' alt="scalpel docs" />
+	</a>
+</div>
+
+<nav class="menu">
+	<p class="menu-label">Overview</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../">Introduction</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-installation/">Installation</a>
+            
+        </li>
+    
+        <li>
+            <a class="is-active"
+               href="../overview-usage/">Usage</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-faq/">FAQ</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Features</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../feature-http/">Intercept and rewrite HTTP traffic</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../feature-editors/">Custom Burp editors</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Script Development</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../api/events.html">Event Hooks &amp; API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-java/">Using the Burp API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-debugging/">Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-examples/">Examples</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Tutorials</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../tute-first-steps/">First steps</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../tute-aes/">Decrypting custom encryption</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Core concepts</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../concepts-howscalpelworks/">How scalpel works</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Technical documentation</p>
+	<ul class="menu-list">
+		<li>
+			<a class="" href='../pdoc'>Python library</a>
+		</li>
+
+		<li>
+			<a class="" href='../javadoc'>Java extension</a>
+		</li>
+		<br />
+		<li>
+			<a class="" href="https://github.com/ambionics/scalpel">
+				<img
+					src='../github.svg'
+					alt="github"
+					style="
+						height: 16px;
+						vertical-align: middle;
+						margin-right: 5px;
+					"
+				/>
+				Github
+			</a>
+		</li>
+	</ul>
+</nav>
+
+    </div>
+    <div id="main" class="column content">
+        
+        
+<a
+	class="button is-small is-outlined is-link is-pulled-right"
+	target="_blank"
+	href="https://github.com/ambionics/scalpel/tree/docs/readme/docs/src/content/overview-usage.md"
+>
+	
+	Edit on GitHub
+</a>
+
+
+        <h1 id="usage"><a class="anchor" href="#usage">#&nbsp;&nbsp;</a>Usage</h1>
+<p>Scalpel allows you to programmatically intercept and modify HTTP requests/responses going through Burp, as well as creating custom request/response editors with Python.</p>
+<p>To do so, Scalpel provides a <strong>Burp extension GUI</strong> for scripting and a set of <strong>predefined function names</strong> corresponding to specific actions:</p>
+<ul>
+<li><a href="../api/events.html#match"><code>match</code></a>: Determine whether an event should be handled by a hook.</li>
+<li><a href="../api/events.html#request"><code>request</code></a>: Intercept and rewrite a request.</li>
+<li><a href="../api/events.html#response"><code>response</code></a>: Intercept and rewrite a response.</li>
+<li><a href="../api/events.html#req_edit_in"><code>req_edit_in</code></a>: Create or update a request editor&rsquo;s content from a request.</li>
+<li><a href="../api/events.html#req_edit_out"><code>req_edit_out</code></a>: Update a request from an editor&rsquo;s modified content.</li>
+<li><a href="../api/events.html#res_edit_in"><code>res_edit_in</code></a>: Create or update a response editor&rsquo;s content from a response.</li>
+<li><a href="../api/events.html#res_edit_out"><code>res_edit_out</code></a>: Update a response from an editor&rsquo;s modified content.</li>
+</ul>
+<p>Simply write a Python script implementing the ones you need and load the file with Scalpel Burp GUI: <figure><img src="../screenshots//choose_script.png"/>
+</figure>
+</p>
+<!-- ^^ TODO: Better screenshot -->
+<blockquote>
+<h3 id="-to-get-started-with-scalpel-see-first-stepshahahugoshortcodes8hbhb"><a class="anchor" href="#-to-get-started-with-scalpel-see-first-stepshahahugoshortcodes8hbhb">#&nbsp;&nbsp;</a>💡 To get started with Scalpel, see <a href="../tute-first-steps/">First steps</a></h3>
+</blockquote>
+<h2 id="further-reading"><a class="anchor" href="#further-reading">#&nbsp;&nbsp;</a>Further reading</h2>
+<p>Learn more about the predefined function names and find examples in the <a href="../feature-http/">Features</a> category.</p>
+
+
+    </div>
+</div>
+</body>
+</html>
+

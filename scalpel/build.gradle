@@ -1,0 +1,127 @@
+import org.gradle.internal.os.OperatingSystem
+import org.gradle.api.tasks.Exec
+import org.gradle.api.tasks.testing.Test
+
+plugins {
+    id 'java'
+}
+
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(17))
+  }
+}
+
+group 'lexfo'
+version '1.0.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+
+
+dependencies {
+    implementation 'net.portswigger.burp.extensions:montoya-api:2023.10.1'
+    
+    // https://mvnrepository.com/artifact/black.ninia/jep
+    implementation 'black.ninia:jep:4.2.0'
+    implementation 'commons-io:commons-io:2.6'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'com.intellij:forms_rt:7.0.3'
+
+    implementation 'org.jetbrains.jediterm:jediterm-pty:2.42'
+    implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'log4j:log4j:1.2.17'
+    implementation 'org.jetbrains.pty4j:pty4j:0.12.11'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0-rc2'
+
+    // Hex editor
+    // https://bined.exbin.org/library/
+    // https://mvnrepository.com/artifact/org.exbin.bined/bined-swing
+    implementation 'org.exbin.bined:bined-swing:0.2.0'
+    implementation 'org.exbin.auxiliary:paged_data:0.2.0'
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    exclude '__pycache__'
+    exclude '**/*.pyc' // Exclude python cache
+    exclude '**/*.html'
+    duplicatesStrategy = 'exclude'
+}
+
+tasks.withType(Copy).all { duplicatesStrategy 'exclude' }
+
+configurations {
+    javadocImplementation.extendsFrom implementation
+}
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath += configurations.javadocImplementation
+    options.links(
+        "https://portswigger.github.io/burp-extensions-montoya-api/javadoc/",
+        "https://bined.exbin.org/library/javadoc/bined-core-0.2.0/",
+        "https://bined.exbin.org/library/javadoc/paged_data-0.2.0/",
+        "https://bined.exbin.org/library/javadoc/bined-swing-0.2.0/",
+        "https://ninia.github.io/jep/javadoc/4.2/"
+    )
+    options.memberLevel = JavadocMemberLevel.PRIVATE
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+
+task deletePythonResources(type: Delete) {
+    delete 'src/main/resources/python3-8'
+}
+
+task transpile_to_python_3_8(type: Exec) {
+    dependsOn deletePythonResources
+    workingDir "${projectDir}"
+    
+    // Execute the Python script to transpile the code
+    commandLine 'python3', '../transpile_tools/3.10_to_3.8.py', '--exclude', "internal_mitmproxy", 'src/main/resources/python3-10', 'src/main/resources/python3-8'
+}
+
+// Specify that the build task should run after the transpile_to_python_3_8 task
+tasks.named('build') {
+    dependsOn transpile_to_python_3_8
+}
+
+// Add the python 3.8 compatibility files to the jar
+build.dependsOn transpile_to_python_3_8
+
+
+// Function to create Python test tasks
+void createPythonTestTask(String taskName, String workingDirPath) {
+    task "${taskName}"(type: Exec) {
+        mustRunAfter transpile_to_python_3_8
+
+        // Disable jep imports
+        environment '_DO_NOT_IMPORT_JAVA', '1'
+        workingDir "${projectDir}/${workingDirPath}"
+        
+        if (OperatingSystem.current().isWindows()) {
+            commandLine 'cmd', '/c', 'set "_DO_NOT_IMPORT_JAVA=1" && python3 -m unittest pyscalpel/tests/test_*.py qs/tests.py'
+        } else {
+            commandLine 'sh', '-c', 'export _DO_NOT_IMPORT_JAVA=1; python3 -m unittest pyscalpel/tests/test_*.py qs/tests.py'
+        }
+    }
+}
+
+createPythonTestTask('runPythonTestsBeforeTranspiling', 'src/main/resources/python3-10')
+createPythonTestTask('runPythonTestsAfterTranspiling', 'src/main/resources/python3-8')
+
+task runPythonTests {
+    dependsOn runPythonTestsBeforeTranspiling, runPythonTestsAfterTranspiling
+}
+
+
+build.mustRunAfter test

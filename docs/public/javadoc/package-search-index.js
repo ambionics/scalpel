@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"lexfo.scalpel"},{"l":"lexfo.scalpel.components"},{"l":"lexfo.scalpel.editors"}];updateSearchResults();

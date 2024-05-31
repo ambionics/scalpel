@@ -1,0 +1,48 @@
+<div class="brand">
+	<a href="https://www.lexfo.fr/">
+		<img src='{{"logo-docs.svg" | relURL}}' alt="scalpel docs" />
+	</a>
+</div>
+
+<nav class="menu">
+	<p class="menu-label">Overview</p>
+	{{ partial "sidemenu" (dict "ctx" . "menuname" "overview") }}
+
+	<p class="menu-label">Features</p>
+	{{ partial "sidemenu" (dict "ctx" . "menuname" "features") }}
+
+	<p class="menu-label">Script Development</p>
+	{{ partial "sidemenu" (dict "ctx" . "menuname" "addons") }}
+
+	<p class="menu-label">Tutorials</p>
+	{{ partial "sidemenu" (dict "ctx" . "menuname" "tutes") }}
+
+	<p class="menu-label">Core concepts</p>
+	{{ partial "sidemenu" (dict "ctx" . "menuname" "concepts") }}
+
+	<p class="menu-label">Technical documentation</p>
+	<ul class="menu-list">
+		<li>
+			<a class="" href='{{ relURL "pdoc" }}'>Python library</a>
+		</li>
+
+		<li>
+			<a class="" href='{{ relURL "javadoc" }}'>Java extension</a>
+		</li>
+		<br />
+		<li>
+			<a class="" href="https://github.com/ambionics/scalpel">
+				<img
+					src='{{"github.svg" | relURL}}'
+					alt="github"
+					style="
+						height: 16px;
+						vertical-align: middle;
+						margin-right: 5px;
+					"
+				/>
+				Github
+			</a>
+		</li>
+	</ul>
+</nav>

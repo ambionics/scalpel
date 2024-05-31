@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="../favicon.ico">
+    <title>First steps</title>
+    
+    
+
+    
+    <link rel="stylesheet" href="../style.min.css">
+
+    
+
+    <meta name="generator" content="Hugo 0.111.3">
+</head>
+<body>
+
+<div class="columns container is-marginless">
+    <div id="sidebar" class="column is-one-quarter">
+        <div class="brand">
+	<a href="https://www.lexfo.fr/">
+		<img src='../logo-docs.svg' alt="scalpel docs" />
+	</a>
+</div>
+
+<nav class="menu">
+	<p class="menu-label">Overview</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../">Introduction</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-installation/">Installation</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-usage/">Usage</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-faq/">FAQ</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Features</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../feature-http/">Intercept and rewrite HTTP traffic</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../feature-editors/">Custom Burp editors</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Script Development</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../api/events.html">Event Hooks &amp; API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-java/">Using the Burp API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-debugging/">Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-examples/">Examples</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Tutorials</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class="is-active"
+               href="../tute-first-steps/">First steps</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../tute-aes/">Decrypting custom encryption</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Core concepts</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../concepts-howscalpelworks/">How scalpel works</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Technical documentation</p>
+	<ul class="menu-list">
+		<li>
+			<a class="" href='../pdoc'>Python library</a>
+		</li>
+
+		<li>
+			<a class="" href='../javadoc'>Java extension</a>
+		</li>
+		<br />
+		<li>
+			<a class="" href="https://github.com/ambionics/scalpel">
+				<img
+					src='../github.svg'
+					alt="github"
+					style="
+						height: 16px;
+						vertical-align: middle;
+						margin-right: 5px;
+					"
+				/>
+				Github
+			</a>
+		</li>
+	</ul>
+</nav>
+
+    </div>
+    <div id="main" class="column content">
+        
+        
+<a
+	class="button is-small is-outlined is-link is-pulled-right"
+	target="_blank"
+	href="https://github.com/ambionics/scalpel/tree/docs/readme/docs/src/content/tute-first-steps.md"
+>
+	
+	Edit on GitHub
+</a>
+
+
+        <!-- <figure><img src="../screenshots/traversal.png"/>
+</figure>
+ -->
+<h1 id="first-steps-with-scalpel"><a class="anchor" href="#first-steps-with-scalpel">#&nbsp;&nbsp;</a>First Steps with Scalpel</h1>
+<h2 id="introduction"><a class="anchor" href="#introduction">#&nbsp;&nbsp;</a>Introduction</h2>
+<p>Welcome to your first steps with Scalpel! This beginner-friendly tutorial will walk you through basic steps to automatically and interactively modify HTTP headers using Scalpel. By the end of this tutorial, you’ll be able to edit the content of the <code>User-Agent</code> and <code>Accept-Language</code> headers using Scalpel’s hooks and custom editors.</p>
+<h2 id="table-of-content"><a class="anchor" href="#table-of-content">#&nbsp;&nbsp;</a>Table of content</h2>
+<ol>
+<li><a href="#1-setting-up-scalpel">Setting up Scalpel</a></li>
+<li><a href="#2-inspecting-a-get-request">Inspecting a GET request</a></li>
+<li><a href="#3-creating-a-new-script">Create a new script</a></li>
+<li><a href="#4-manipulating-headers">Manipulating headers</a></li>
+<li><a href="#5-creating-custom-editors">Creating custom editors</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="1-setting-up-scalpel"><a class="anchor" href="#1-setting-up-scalpel">#&nbsp;&nbsp;</a>1. Setting up Scalpel</h2>
+<p>Before diving in, ensure Scalpel is <a href="../overview-installation/">installed</a>. Once done, you should have a <code>Scalpel</code> tab within Burp Suite.
+<figure><img src="../screenshots/first-steps-0.png"/>
+</figure>
+</p>
+<h2 id="2-inspecting-a-get-request"><a class="anchor" href="#2-inspecting-a-get-request">#&nbsp;&nbsp;</a>2. Inspecting a GET request</h2>
+<p>Let’s start by inspecting a basic GET request. Open <a href="https://httpbin.org/get">https://httpbin.org/get</a> in your Burp suite’s browser. This site simply returns details of the requests it receives, making it perfect for this example case.</p>
+<p>Then, get back to Burp Suite. The GET request should show in your HTTP history.
+<figure><img src="../screenshots/first-steps-1.png"/>
+</figure>
+</p>
+<p>Send it to Repeater using CTRL-R or right-click → <code>Send to Repeater</code></p>
+<h2 id="3-creating-a-new-script"><a class="anchor" href="#3-creating-a-new-script">#&nbsp;&nbsp;</a>3. Creating a new script</h2>
+<ol>
+<li>
+<p>Select the <code>Scalpel</code> tab in the Burp GUI:
+<figure><img src="../screenshots/first-steps-2.png"/>
+   </figure>
+</p>
+</li>
+<li>
+<p>Create a new script using the dedicated button:
+<figure><img src="../screenshots/first-steps-3.png"/>
+   </figure>
+
+<img src="error-popup.png" alt="alt text"></p>
+</li>
+<li>
+<p>Name it appropriately:
+<figure><img src="../screenshots/first-steps-4.png"/>
+   </figure>
+</p>
+</li>
+<li>
+<p>Open the new script in a text editor:
+<figure><img src="../screenshots/first-steps-5.png"/>
+   </figure>
+
+<figure><img src="../screenshots/first-steps-6.png"/>
+   </figure>
+</p>
+<blockquote>
+<p>💡 The commands ran when selecting a script or opening it can be configured in the <strong><em>Settings</em> tab</strong></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="4-manipulating-headers"><a class="anchor" href="#4-manipulating-headers">#&nbsp;&nbsp;</a>4. Manipulating headers</h2>
+<p>This step will focus on manipulating the <code>User-Agent</code> header of the GET request.</p>
+<p>With Scalpel, this header can easily be changed to a custom value. Here’s how:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyscalpel</span> <span class="kn">import</span> <span class="n">Request</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Request</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">user_agent</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="n">user_agent</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&#34;User-Agent&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;My Custom User-Agent&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">req</span>
+</span></span></code></pre></div><blockquote>
+<p>💡 The <code>request()</code> function modifies every requests going out of Burp.</p>
+<p>This includes the requests from the proxy (browser) and the repeater.</p>
+</blockquote>
+<p>With the above code, every time you make a GET request, Scalpel will automatically change the <code>User-Agent</code> header to “My Custom User-Agent”.</p>
+<p>To apply this effect:</p>
+<ol>
+<li>
+<p>Replace your script content with the snippet above.</p>
+</li>
+<li>
+<p>Send the request to <a href="https://httpbin.org/get">https://httpbin.org/get</a> using Repeater.</p>
+</li>
+<li>
+<p>You should see in the response that your User-Agent header was indeed replaced by <code>My Custom User-Agent</code>.
+<figure><img src="../screenshots/first-steps-7.png"/>
+   </figure>
+</p>
+</li>
+<li>
+<p>The process for modifying a response is the same. Add this to your script:</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pyscalpel</span> <span class="kn">import</span> <span class="n">Response</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">response</span><span class="p">(</span><span class="n">res</span><span class="p">:</span> <span class="n">Response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">date</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;Date&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="n">date</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&#34;Date&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;My Custom Date&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">res</span>
+</span></span></code></pre></div><ol start="5">
+<li>The snippet above changed the <code>Date</code> header in response to <code>My Custom Date</code>. Send the request again and see the reflected changes:
+<figure><img src="../screenshots/first-steps-8.png"/>
+   </figure>
+</li>
+</ol>
+<p>You now know how to programmatically edit HTTP requests and responses.</p>
+<p>Next, let’s see how to interactively edit parts of a request.</p>
+<h2 id="5-creating-custom-editors"><a class="anchor" href="#5-creating-custom-editors">#&nbsp;&nbsp;</a>5. Creating custom editors</h2>
+<p>Custom editors in Scalpel allow you to interactively change specific parts of a request. Let’s create an editor to change the <code>Accept-Language</code> header manually:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">req_edit_in_accept_language</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;Accept-Language&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">req_edit_out_accept_language</span><span class="p">(</span><span class="n">req</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">edited_text</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Request</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&#34;Accept-Language&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edited_text</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">req</span>
+</span></span></code></pre></div><p>Thanks to these hooks, when you open a GET request in Burp Suite, you’ll see an additional <code>Scalpel</code> tab. This tab enables you to edit the <code>Accept-Language</code> header’s content directly.
+<figure><img src="../screenshots/first-steps-9.png"/>
+</figure>
+</p>
+<p>Once edited, Scalpel will replace the original <code>Accept-Language</code> value with your edited version.
+<figure><img src="../screenshots/first-steps-10.png"/>
+</figure>
+</p>
+<h2 id="conclusion"><a class="anchor" href="#conclusion">#&nbsp;&nbsp;</a>Conclusion</h2>
+<p>Congratulations! In this tutorial, you’ve taken your first steps with Scalpel. You’ve learned how to inspect GET requests, manipulate HTTP headers automatically, and create custom editors for interactive edits.</p>
+<p>Remember, Scalpel is a powerful tool with a lot more capabilities. As you become more familiar with its features, you’ll discover its potential to significantly enhance your web security testing workflow.</p>
+<hr>
+<h1 id="further-reading"><a class="anchor" href="#further-reading">#&nbsp;&nbsp;</a>Further reading</h1>
+<p>Find <strong>example use-cases <a href="../addons-examples/">here</a></strong>.</p>
+<p>Read the <a href="../pdoc/python/pyscalpel.html"><strong>technical documentation</strong></a>.</p>
+<p>See an <strong>advanced tutorial</strong> for a real use case in <a href="../tute-aes/"><strong>Decrypting custom encryption</strong></a>.</p>
+
+
+    </div>
+</div>
+</body>
+</html>
+

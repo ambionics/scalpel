@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="./favicon.ico">
+    <title>Introduction</title>
+    
+    
+
+    
+    <link rel="stylesheet" href="./style.min.css">
+
+    
+
+    <link rel="alternate" type="application/rss+xml" href="./index.xml" title="scalpel.org docs" />
+    <meta name="generator" content="Hugo 0.111.3">
+</head>
+<body>
+
+<div class="columns container is-marginless">
+    <div id="sidebar" class="column is-one-quarter">
+        <div class="brand">
+	<a href="https://www.lexfo.fr/">
+		<img src='./logo-docs.svg' alt="scalpel docs" />
+	</a>
+</div>
+
+<nav class="menu">
+	<p class="menu-label">Overview</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class="is-active"
+               href="./">Introduction</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="./overview-installation/">Installation</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="./overview-usage/">Usage</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="./overview-faq/">FAQ</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Features</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="./feature-http/">Intercept and rewrite HTTP traffic</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="./feature-editors/">Custom Burp editors</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Script Development</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="./api/events.html">Event Hooks &amp; API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="./addons-java/">Using the Burp API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="./addons-debugging/">Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="./addons-examples/">Examples</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Tutorials</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="./tute-first-steps/">First steps</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="./tute-aes/">Decrypting custom encryption</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Core concepts</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="./concepts-howscalpelworks/">How scalpel works</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Technical documentation</p>
+	<ul class="menu-list">
+		<li>
+			<a class="" href='./pdoc'>Python library</a>
+		</li>
+
+		<li>
+			<a class="" href='./javadoc'>Java extension</a>
+		</li>
+		<br />
+		<li>
+			<a class="" href="https://github.com/ambionics/scalpel">
+				<img
+					src='./github.svg'
+					alt="github"
+					style="
+						height: 16px;
+						vertical-align: middle;
+						margin-right: 5px;
+					"
+				/>
+				Github
+			</a>
+		</li>
+	</ul>
+</nav>
+
+    </div>
+    <div id="main" class="column content">
+        
+        
+
+        <h1 id="introduction"><a class="anchor" href="#introduction">#&nbsp;&nbsp;</a>Introduction</h1>
+<p>Scalpel is a powerful <strong>Burp Suite</strong> extension that allows you to script Burp in order to intercept, rewrite HTTP traffic on the fly, and program custom Burp editors in Python 3.</p>
+<p>It provides an interactive way to edit encoded/encrypted data as plaintext and offers an easy-to-use Python library as an alternative to Burp&rsquo;s Java API.</p>
+<h1 id="index"><a class="anchor" href="#index">#&nbsp;&nbsp;</a>Index</h1>
+<ul>
+<li><a href="./overview-installation/">Installation</a></li>
+<li><a href="./overview-usage/">Usage</a></li>
+<li><a href="./tute-first-steps/">First steps</a></li>
+<li><a href="./overview-faq/">FAQ</a></li>
+<li><a href="./api/events.html">Technical documentation for script development</a></li>
+<li><a href="./tute-aes/">Example use-case</a></li>
+<li><a href="./concepts-howscalpelworks/">How scalpel works</a></li>
+</ul>
+<h2 id="features"><a class="anchor" href="#features">#&nbsp;&nbsp;</a>Features</h2>
+<ul>
+<li><a href="./api/events.html"><strong>Python Library</strong></a>: Easy-to-use Python library, especially welcome for non-Java developers.</li>
+<li><a href="./feature-http/"><strong>Intercept and Rewrite HTTP Traffic</strong></a>: Scalpel provides a set of predefined function names that can be implemented to intercept and modify HTTP requests and responses.</li>
+<li><a href="./feature-editors/"><strong>Custom Burp Editors</strong></a>: Program your own Burp editors in Python. Encoded/encrypted data can be handled as plaintext.
+<ul>
+<li><a href="./feature-editors/#binary-editors"><strong>Hex Editors</strong></a>: Ability to create improved hex editors.</li>
+</ul>
+</li>
+</ul>
+<h2 id="use-cases"><a class="anchor" href="#use-cases">#&nbsp;&nbsp;</a>Use cases</h2>
+<ul>
+<li><a href="./tute-aes/">Decrypting custom encryption</a></li>
+<li><a href="./addons-examples/#GZIP">Editing encoded requests/responses</a></li>
+</ul>
+<blockquote>
+<p>Note: One might think existing Burp extensions like <code>Piper</code> can handle such cases. But actually they can&rsquo;t.<br>
+For example, when intercepting a response, <code>Piper</code> cannot get information from the initiating request, which is required in the above use cases. Scalpel generally allows you to manage complex cases that are not handled by other Burp extensions like <code>Piper</code> or <code>Hackvertor</code>.</p>
+</blockquote>
+
+
+    </div>
+</div>
+</body>
+</html>
+

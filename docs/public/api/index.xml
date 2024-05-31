@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apis on scalpel.org docs</title>
+    <link>/api/</link>
+    <description>Recent content in Apis on scalpel.org docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="/api/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pyscalpel.edit</title>
+      <link>/api/pyscalpel/edit.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/edit.html</guid>
+      <description>pyscalpel.edit Scalpel allows choosing between normal and binary editors, to do so, the user can apply the editor decorator to the req_edit_in / res_edit_int hook:
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 Scalpel allows choosing between normal and binary editors, 3 to do so, the user can apply the `editor` decorator to the `req_edit_in` / `res_edit_int` hook: 4&amp;quot;&amp;quot;&amp;quot; 5from typing import Callable, Literal, get_args 6 7EditorMode = Literal[&amp;quot;raw&amp;quot;, &amp;quot;hex&amp;quot;, &amp;quot;octal&amp;quot;, &amp;quot;binary&amp;quot;, &amp;quot;decimal&amp;quot;] 8EDITOR_MODES: set[EditorMode] = set(get_args(EditorMode)) 9 10 11def editor(mode: EditorMode): 12 &amp;quot;&amp;quot;&amp;quot;Decorator to specify the editor type for a given hook 13 14 This can be applied to a req_edit_in / res_edit_in hook declaration to specify the editor that should be displayed in Burp 15 16 Example: 17 ```py 18 @editor(&amp;quot;hex&amp;quot;) 19 def req_edit_in(req: Request) -&amp;gt; bytes | None: 20 return bytes(req) 21 ``` 22 This displays the request in an hex editor.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.encoding</title>
+      <link>/api/pyscalpel/encoding.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/encoding.html</guid>
+      <description>pyscalpel.encoding Utilities for encoding data.
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 Utilities for encoding data. 3&amp;quot;&amp;quot;&amp;quot; 4 5from urllib.parse import unquote_to_bytes as urllibdecode 6from _internal_mitmproxy.utils import strutils 7 8 9# str/bytes conversion helpers from mitmproxy/http.py: 10# https://github.com/mitmproxy/mitmproxy/blob/main/mitmproxy/http.py#:~:text=def-,_native,-(x%3A 11def always_bytes(data: str | bytes | int, encoding=&amp;quot;latin-1&amp;quot;) -&amp;gt; bytes: 12 &amp;quot;&amp;quot;&amp;quot;Convert data to bytes 13 14 Args: 15 data (str | bytes | int): The data to convert 16 17 Returns: 18 bytes: The converted bytes 19 &amp;quot;&amp;quot;&amp;quot; 20 if isinstance(data, int): 21 data = str(data) 22 return strutils.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.events</title>
+      <link>/api/pyscalpel/events.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/events.html</guid>
+      <description> pyscalpel.events Events that can be passed to the match() hook
+View Source 1&amp;quot;&amp;quot;&amp;quot;Events that can be passed to the match() hook&amp;quot;&amp;quot;&amp;quot; 2 3from typing import Literal, get_args 4 5MatchEvent = Literal[ 6 &amp;quot;request&amp;quot;, 7 &amp;quot;response&amp;quot;, 8 &amp;quot;req_edit_in&amp;quot;, 9 &amp;quot;req_edit_out&amp;quot;, 10 &amp;quot;res_edit_in&amp;quot;, 11 &amp;quot;res_edit_out&amp;quot;, 12] 13 14 15MATCH_EVENTS: set[MatchEvent] = set(get_args(MatchEvent)) MatchEvent = typing.Literal[&amp;#39;request&amp;#39;, &amp;#39;response&amp;#39;, &amp;#39;req_edit_in&amp;#39;, &amp;#39;req_edit_out&amp;#39;, &amp;#39;res_edit_in&amp;#39;, &amp;#39;res_edit_out&amp;#39;] MATCH_EVENTS: set[typing.Literal[&amp;#39;request&amp;#39;, &amp;#39;response&amp;#39;, &amp;#39;req_edit_in&amp;#39;, &amp;#39;req_edit_out&amp;#39;, &amp;#39;res_edit_in&amp;#39;, &amp;#39;res_edit_out&amp;#39;]] = {&amp;#39;request&amp;#39;, &amp;#39;res_edit_out&amp;#39;, &amp;#39;req_edit_out&amp;#39;, &amp;#39;response&amp;#39;, &amp;#39;req_edit_in&amp;#39;, &amp;#39;res_edit_in&amp;#39;} </description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.http</title>
+      <link>/api/pyscalpel/http.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/http.html</guid>
+      <description>pyscalpel.http This module contains objects representing HTTP objects passed to the user&#39;s hooks
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 This module contains objects representing HTTP objects passed to the user&amp;#39;s hooks 3&amp;quot;&amp;quot;&amp;quot; 4 5from .request import Request, Headers 6from .response import Response 7from .flow import Flow 8from .utils import match_patterns, host_is 9from . import body 10 11__all__ = [ 12 &amp;quot;body&amp;quot;, # &amp;lt;- pdoc shows a warning for this declaration but won&amp;#39;t display it when absent 13 &amp;quot;Request&amp;quot;, 14 &amp;quot;Response&amp;quot;, 15 &amp;quot;Headers&amp;quot;, 16 &amp;quot;Flow&amp;quot;, 17 &amp;quot;host_is&amp;quot;, 18 &amp;quot;match_patterns&amp;quot;, 19] class Request: View Source 70class Request: 71 &amp;quot;&amp;quot;&amp;quot;A &amp;quot;Burp oriented&amp;quot; HTTP request class 72 73 74 This class allows to manipulate Burp requests in a Pythonic way.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.http.body</title>
+      <link>/api/pyscalpel/http/body.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/http/body.html</guid>
+      <description>pyscalpel.http.body Pentesters often have to manipulate form data in precise and extensive ways
+This module contains implementations for the most common forms (multipart,urlencoded, JSON)
+Users may be implement their own form by creating a Serializer, assigning the .serializer attribute in Request and using the &#34;form&#34; property
+Forms are designed to be convertible from one to another.
+For example, JSON forms may be converted to URL encoded forms by using the php query string syntax:</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.java</title>
+      <link>/api/pyscalpel/java.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/java.html</guid>
+      <description>pyscalpel.java This module declares type definitions used for Java objects.
+If you are a normal user, you should probably never have to manipulate these objects yourself.
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 This module declares type definitions used for Java objects. 3 4 If you are a normal user, you should probably never have to manipulate these objects yourself. 5&amp;quot;&amp;quot;&amp;quot; 6from .bytes import JavaBytes 7from .import_java import import_java 8from .object import JavaClass, JavaObject 9from .</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.java.burp</title>
+      <link>/api/pyscalpel/java/burp.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/java/burp.html</guid>
+      <description>pyscalpel.java.burp This module exposes Java objects from Burp&#39;s extensions API
+If you are a normal user, you should probably never have to manipulate these objects yourself.
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 This module exposes Java objects from Burp&amp;#39;s extensions API 3 4 If you are a normal user, you should probably never have to manipulate these objects yourself. 5&amp;quot;&amp;quot;&amp;quot; 6from .byte_array import IByteArray, ByteArray 7from .http_header import IHttpHeader, HttpHeader 8from .</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.utils</title>
+      <link>/api/pyscalpel/utils.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/utils.html</guid>
+      <description>pyscalpel.utils View Source 1import inspect 2from typing import TypeVar, Union 3from pyscalpel.burp_utils import ( 4 urldecode, 5 urlencode_all, 6) 7 8 9T = TypeVar(&amp;quot;T&amp;quot;, str, bytes) 10 11 12def removeprefix(s: T, prefix: Union[str, bytes]) -&amp;gt; T: 13 if isinstance(s, str) and isinstance(prefix, str): 14 if s.startswith(prefix): 15 return s[len(prefix) :] # type: ignore 16 elif isinstance(s, bytes) and isinstance(prefix, bytes): 17 if s.startswith(prefix): 18 return s[len(prefix) :] # type: ignore 19 return s 20 21 22def removesuffix(s: T, suffix: Union[str, bytes]) -&amp;gt; T: 23 if isinstance(s, str) and isinstance(suffix, str): 24 if s.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.venv</title>
+      <link>/api/pyscalpel/venv.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/venv.html</guid>
+      <description>pyscalpel.venv This module provides reimplementations of Python virtual environnements scripts
+This is designed to be used internally, but in the case where the user desires to dynamically switch venvs using this, they should ensure the selected venv has the dependencies required by Scalpel.
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2This module provides reimplementations of Python virtual environnements scripts 3 4This is designed to be used internally, 5but in the case where the user desires to dynamically switch venvs using this, 6they should ensure the selected venv has the dependencies required by Scalpel.</description>
+    </item>
+    
+  </channel>
+</rss>

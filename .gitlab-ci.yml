@@ -1,0 +1,85 @@
+stages:
+    - prepare
+    - build
+    - test
+    - build_docs_stage
+    - update_docs
+
+variables:
+    GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+prepare_python_env:
+    stage: prepare
+    image: python:3.10
+    script:
+        - python3 -m venv .venv
+        - source .venv/bin/activate
+        - pip install -r docs/requirements.txt
+    artifacts:
+        paths:
+            - .venv/
+
+build_scalpel:
+    stage: build
+    image: python:3.10
+    script:
+        - apt-get update -y
+        - apt-get install -y openjdk-17-jdk
+        - ./gradlew build
+    artifacts:
+        paths:
+            - scalpel/build/libs/*.jar
+
+build_javadoc:
+    stage: build
+    image: python:3.10
+    script:
+        - apt-get update -y
+        - apt-get install -y openjdk-17-jdk
+        - ./gradlew javadoc
+    artifacts:
+        paths:
+            - scalpel/build/docs/javadoc/
+
+build_docs:
+    stage: build_docs_stage
+    dependencies:
+        - prepare_python_env
+        - build_javadoc
+    image: python:3.10
+    script:
+        - apt-get update -y
+        - apt-get install -y hugo
+        - source .venv/bin/activate
+        - rm -rf docs/public/javadoc/
+        - cp -r scalpel/build/docs/javadoc/ docs/public/javadoc/
+        - cd docs && ./build.py --no-javadoc
+    artifacts:
+        paths:
+            - docs/public/
+
+run_tests:
+    stage: test
+    dependencies:
+        - prepare_python_env
+    image: python:3.10
+    script:
+        - source .venv/bin/activate
+        - sh run_tests.sh
+
+update_docs:
+    stage: update_docs
+    only:
+        - main
+    image: debian
+    script:
+        - export GIT_SSL_NO_VERIFY=true
+        - apt-get update && apt-get install -y git
+        - git config --global user.email "ci@fakegitlab.com"
+        - git config --global user.name "GitLab CI"
+        - git remote set-url origin "${CI_REPOSITORY_URL}"
+        - git fetch origin main:main # Fetch main branch
+        - git checkout main # Switch to main branch
+        - git add docs/public/
+        - git commit -m "Update generated docs [skip ci]" || echo "No changes to commit"
+        - git push origin main

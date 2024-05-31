@@ -1,0 +1,70 @@
+tmp/
+*.class
+.vscode/
+.venv/
+docker.sh
+Dockerfile
+burp-extensions-montoya-api-examples/
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+.idea
+.gradle
+.DS_Store
+build/
+out/
+dist/
+bin/
+.prettierc
+
+*.pyc
+
+notes/
+
+log*.txt
+
+__pycache__
+
+generated/
+src/public/
+node_modules/
+# public/
+src/resources/_gen/
+.venv/
+build/
+bin/
+.gradle
+.idea
+notes/
+__pycache__
+old_deocs/
+TODO.md
+install.md
+note.md
+burp.licence
+TODO.MD
+macosinstall.md
+a.java
+python3.8/
+python3-8/

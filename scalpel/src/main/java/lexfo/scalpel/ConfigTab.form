@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="lexfo.scalpel.ConfigTab">
+  <grid id="27dc6" binding="rootPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="59" y="42" width="960" height="741"/>
+    </constraints>
+    <properties/>
+    <border type="none" title=""/>
+    <children>
+      <tabbedpane id="bd94c">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <toolTipText value=""/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="43a64" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Scripts and Venv"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="47089" binding="venvSelectPanel" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="5" left="5" bottom="5" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none" title=""/>
+                <children>
+                  <grid id="925d" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="2" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="100" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="81d47" class="lexfo.scalpel.components.PlaceholderTextField" binding="addVentText" custom-create="true">
+                        <constraints border-constraint="Center"/>
+                        <properties/>
+                      </component>
+                      <component id="18610" class="javax.swing.JButton" binding="addVenvButton">
+                        <constraints border-constraint="East"/>
+                        <properties>
+                          <text value="+"/>
+                          <toolTipText value="Add/Create the virtualenv"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <component id="68bc1" class="com.jediterm.terminal.ui.JediTermWidget" binding="terminalForVenvConfig" custom-create="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="4" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <toolTipText value="A terminal to install new packages and edit your script"/>
+                    </properties>
+                  </component>
+                  <grid id="b57e7" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="1" column="0" row-span="3" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <scrollpane id="7f2d6">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="4b7da" class="javax.swing.JList" binding="venvListComponent">
+                            <constraints/>
+                            <properties>
+                              <model>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="loremaucupatum"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatiolorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatiolorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatiolorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatiolorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatiolorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                                <item value="lorem"/>
+                                <item value="ipsum"/>
+                                <item value="aucupatum"/>
+                                <item value="versatio"/>
+                              </model>
+                              <toolTipText value=""/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                      <scrollpane id="f918b">
+                        <constraints>
+                          <grid row="1" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="7" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <toolTipText value=""/>
+                        </properties>
+                        <border type="none" title=""/>
+                        <children>
+                          <component id="1168b" class="javax.swing.JTable" binding="packagesTable">
+                            <constraints/>
+                            <properties>
+                              <toolTipText value="Packages installed in the current virtualenv"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="c350c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="7080e" binding="browsePanel" layout-manager="GridLayoutManager" row-count="11" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="-1">
+                    <margin top="3" left="3" bottom="3" right="3"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
+                        <maximum-size width="300" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <grid id="66b18" binding="frameworkConfigPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="10" right="10"/>
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <enabled value="false"/>
+                          <visible value="false"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="aeda0" class="javax.swing.JButton" binding="frameworkBrowseButton">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Browse"/>
+                            </properties>
+                          </component>
+                          <hspacer id="26c92">
+                            <constraints>
+                              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                          </hspacer>
+                          <component id="20b2c" class="javax.swing.JTextArea" binding="frameworkPathTextArea" default-binding="true">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="2" fill="0" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="10"/>
+                              </grid>
+                            </constraints>
+                            <properties>
+                              <text value="framework path"/>
+                            </properties>
+                          </component>
+                          <component id="663fa" class="javax.swing.JTextField" binding="frameworkPathField">
+                            <constraints>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                                <preferred-size width="50" height="10"/>
+                              </grid>
+                            </constraints>
+                            <properties>
+                              <horizontalAlignment value="4"/>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="84e0" binding="scriptConfigPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="10" right="10"/>
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <toolTipText value=""/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="28a75" class="javax.swing.JButton" binding="scriptBrowseButton">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Browse"/>
+                            </properties>
+                          </component>
+                          <component id="34a3" class="javax.swing.JLabel" binding="scriptPathTextArea">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="2" fill="0" indent="0" use-parent-layout="false">
+                                <preferred-size width="-1" height="10"/>
+                              </grid>
+                            </constraints>
+                            <properties>
+                              <text value="Add an existing python script"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="cf434" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="10" right="10"/>
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="4d99c" class="javax.swing.JButton" binding="createButton">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Create new script"/>
+                            </properties>
+                          </component>
+                          <vspacer id="5c127">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                <preferred-size width="-1" height="10"/>
+                              </grid>
+                            </constraints>
+                          </vspacer>
+                        </children>
+                      </grid>
+                      <grid id="1a0fc" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="10" right="10"/>
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <toolTipText value=""/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="e7fa9" class="javax.swing.JButton" binding="openScriptButton">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Open selected script"/>
+                              <toolTipText value="Open the script with the command defined in &quot;Settings&quot;"/>
+                            </properties>
+                          </component>
+                          <vspacer id="30913">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                <preferred-size width="-1" height="10"/>
+                              </grid>
+                            </constraints>
+                          </vspacer>
+                        </children>
+                      </grid>
+                      <grid id="ce69b" binding="listPannel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <toolTipText value=""/>
+                        </properties>
+                        <border type="none" title=""/>
+                        <children>
+                          <scrollpane id="48d89">
+                            <constraints>
+                              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="f773f" class="javax.swing.JList" binding="venvScriptList">
+                                <constraints/>
+                                <properties>
+                                  <maximumSize width="65" height="150"/>
+                                  <model>
+                                    <item value="default.py"/>
+                                    <item value="crypto.py"/>
+                                    <item value="recon.py"/>
+                                  </model>
+                                  <preferredSize width="65" height="300"/>
+                                  <toolTipText value=""/>
+                                </properties>
+                                <clientProperties>
+                                  <List.isFileList class="java.lang.Boolean" value="true"/>
+                                </clientProperties>
+                              </component>
+                            </children>
+                          </scrollpane>
+                          <component id="56895" class="javax.swing.JLabel">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <horizontalAlignment value="0"/>
+                              <horizontalTextPosition value="0"/>
+                              <text value="Selected script: "/>
+                            </properties>
+                          </component>
+                          <component id="32d80" class="javax.swing.JLabel" binding="selectedScriptLabel">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="9a6fa" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="10" right="10"/>
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <toolTipText value=""/>
+                        </properties>
+                        <border type="none" title=""/>
+                        <children>
+                          <component id="57d73" class="javax.swing.JButton" binding="openFolderButton">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Open script folder"/>
+                              <toolTipText value="Open the containing folder using the command defined in &quot;Settings&quot;"/>
+                            </properties>
+                          </component>
+                          <vspacer id="e310e">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                <preferred-size width="-1" height="10"/>
+                              </grid>
+                            </constraints>
+                          </vspacer>
+                        </children>
+                      </grid>
+                      <component id="b3926" class="javax.swing.JButton" binding="scalpelIsENABLEDButton" default-binding="true">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <foreground color="-4473925"/>
+                          <hideActionText value="false"/>
+                          <text value="Scalpel is ENABLED"/>
+                          <toolTipText value="Button to enable or disable Scalpel hooks"/>
+                        </properties>
+                      </component>
+                      <vspacer id="bc4de">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <minimum-size width="-1" height="15"/>
+                          </grid>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="7ba07">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <minimum-size width="-1" height="5"/>
+                          </grid>
+                        </constraints>
+                      </vspacer>
+                      <grid id="58064" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="10" right="10"/>
+                        <constraints>
+                          <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <toolTipText value=""/>
+                        </properties>
+                        <border type="none" title=""/>
+                        <children>
+                          <component id="6422e" class="javax.swing.JButton" binding="resetTerminalButton">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Reset terminal"/>
+                              <toolTipText value="Reset the terminal in case it gets broken"/>
+                            </properties>
+                          </component>
+                          <vspacer id="8179a">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                <preferred-size width="-1" height="10"/>
+                              </grid>
+                            </constraints>
+                          </vspacer>
+                        </children>
+                      </grid>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="9351a" binding="outputTabPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Script output"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="8ae3" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <scrollpane id="bd995" binding="stdoutScrollPane">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="42126" class="javax.swing.JTextArea" binding="stdoutTextArea">
+                        <constraints/>
+                        <properties>
+                          <editable value="false"/>
+                          <lineWrap value="true"/>
+                          <text value=""/>
+                          <wrapStyleWord value="true"/>
+                        </properties>
+                        <clientProperties>
+                          <html.disable class="java.lang.Boolean" value="true"/>
+                        </clientProperties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <component id="61603" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Output"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="dd504" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <scrollpane id="f8464" binding="stderrScrollPane">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="e31e7" class="javax.swing.JTextArea" binding="stderrTextArea">
+                        <constraints/>
+                        <properties>
+                          <editable value="false"/>
+                          <lineWrap value="true"/>
+                          <text value=""/>
+                        </properties>
+                        <clientProperties>
+                          <html.disable class="java.lang.Boolean" value="true"/>
+                        </clientProperties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <component id="9e610" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Error"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="9dbc8" binding="settingsTab" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Settings"/>
+            </constraints>
+            <properties/>
+            <clientProperties>
+              <html.disable class="java.lang.Boolean" value="true"/>
+            </clientProperties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="ba329" layout-manager="FormLayout">
+            <rowspec value="center:d:noGrow"/>
+            <rowspec value="top:4dlu:noGrow"/>
+            <rowspec value="center:max(d;4px):noGrow"/>
+            <colspec value="fill:d:grow"/>
+            <constraints>
+              <tabbedpane title="Help"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="9b396" class="javax.swing.JTextPane" binding="helpTextPane">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms/>
+                </constraints>
+                <properties>
+                  <contentType value="text/html"/>
+                  <editable value="false"/>
+                  <enabled value="true"/>
+                  <text value="&lt;html&gt;&#10;  &lt;head&gt;&#10;    &#10;  &lt;/head&gt;&#10;  &lt;body&gt;&#10;    &lt;p&gt;&#10;      To access the documentation: &lt;a href=&quot;https://ambionics.github.io/scalpel/public/&quot;&gt;Click &#10;      here&lt;/a&gt;&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;      To access the FAQ and common issues: &lt;a href=&quot;https://ambionics.github.io/scalpel/public/faq&quot;&gt;Click &#10;      Here &lt;/a&gt;&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;      To fully uninstall Scalpel, remove the ~/.scalpel/ folder in your home &#10;      directory and make sure to remove the extension from Burp&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;      To reinstall Scalpel simply restart Burp and reload the extension&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;      If you have previously installed Scalpel and left the installation in a &#10;      broken state, you must fully uninstall Scalpel before reinstalling it&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;      If Scalpel fails to load properly, make you sure you have installed all &#10;      the dependencies specified in the &lt;a href=&quot;https://github.com/ambionics/scalpel/blob/main/README.md&quot;&gt;Github &#10;      README&lt;/a&gt;, and that your Python version is supported&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;      If you fail to troubleshoot a failed install, please open an issue on &#10;      the &lt;a href=&quot;https://github.com/ambionics/scalpel&quot;&gt;GitHub page&lt;/a&gt; and &#10;      include the content of the &amp;quot;Debug Info&amp;quot; tab&#10;    &lt;/p&gt;&#10;    &lt;p&gt;&#10;      Note: To reload Scalpel, you MUST restart Burp entirely&#10;    &lt;/p&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;&#10;"/>
+                </properties>
+              </component>
+              <component id="f76f8" class="javax.swing.JButton" binding="openIssueOnGitHubButton" default-binding="true">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms top="0" left="5" bottom="0" right="0" defaultalign-horz="false"/>
+                </constraints>
+                <properties>
+                  <text value="Open an issue on GitHub"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="31ccf" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Debug Info"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <scrollpane id="2ebd0">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <horizontalScrollBarPolicy value="30"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="16201" class="javax.swing.JTextPane" binding="debugInfoTextPane">
+                    <constraints/>
+                    <properties>
+                      <editable value="false"/>
+                      <text value=""/>
+                      <toolTipText value="Transmit this when asking for support."/>
+                    </properties>
+                    <clientProperties>
+                      <html.disable class="java.lang.Boolean" value="true"/>
+                    </clientProperties>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="906d3" class="javax.swing.JButton" binding="copyToClipboardButton" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Copy to clipboard"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>

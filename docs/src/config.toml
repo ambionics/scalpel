@@ -1,0 +1,17 @@
+baseURL = ""
+languageCode = "en-us"
+title = "scalpel.org docs"
+theme = "mitmproxydocs"
+publishDir = "../public"
+RelativeURLs = true
+pygmentsCodefences = true
+pygmentsUseClasses = true
+
+[indexes]
+tag = "tags"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[security.funcs]
+getenv = ["DOCS_ARCHIVE"]

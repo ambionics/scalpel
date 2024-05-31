@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction on scalpel.org docs</title>
+    <link>/</link>
+    <description>Recent content in Introduction on scalpel.org docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debugging</title>
+      <link>/addons-debugging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/addons-debugging/</guid>
+      <description>Debugging Scalpel scripts can be hard to debug, as you cannot run them outside of Burp.
+Also it is difficult to know if a bug is related to Scalpel/Burp context or to the user&amp;rsquo;s implementation.
+Here are a few advices for debugging Scalpel errors.
+Finding stacktraces Errors that occur in scripts can be found in different places:
+1. The Output tab In the Scalpel tab, there is a sub-tab named Script Output, it shows all the standard output and error contents outputted by the current script 2.</description>
+    </item>
+    
+    <item>
+      <title>Custom Burp editors</title>
+      <link>/feature-editors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/feature-editors/</guid>
+      <description>Custom Burp Editors Scalpel&amp;rsquo;s main killer feature is the ability to program your own editors using Python.
+Table of content Event hooks Edit a request Edit a response Multiple tabs example Binary editors Event hooks 1. Edit a request E.g: A simple script to edit a fully URL encoded query string parameter in a request:
+from pyscalpel import Request from pyscalpel.utils import urldecode, urlencode_all # Hook to initialize the editor&amp;#39;s content def req_edit_in(req: Request) -&amp;gt; bytes | None: param = req.</description>
+    </item>
+    
+    <item>
+      <title>Decrypting custom encryption</title>
+      <link>/tute-aes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tute-aes/</guid>
+      <description>Decrypting custom encryption Context An IOT appliance adds an obfuscation layer to its HTTP communications by encrypting the body of its requests and responses with a key.
+On every HTTP request, the program sends two POST parameters:
+secret (the encryption key) encrypted (the ciphertext). Let&amp;rsquo;s solve this problem by using Scalpel!
+It will provide an additional tab in the Repeater which displays the plaintext for every request and response. The plaintext can also be edited.</description>
+    </item>
+    
+    <item>
+      <title>Event Hooks &amp; API</title>
+      <link>/api/events.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/events.html</guid>
+      <description>Available Hooks The following list all available event hooks.
+The full Python documentation is available here
+events View Source 1from pyscalpel import Request, Response, Flow, MatchEvent 2 3 4def match(flow: Flow, events: MatchEvent) -&amp;gt; bool: 5 &amp;quot;&amp;quot;&amp;quot;- Determine whether an event should be handled by a hook. 6 7 - Args: 8 - flow ([Flow](../pdoc/python3-10/pyscalpel.html#Flow)): The event context (contains request and optional response). 9 - events ([MatchEvent](../pdoc/python3-10/pyscalpel.html#MatchEvent)): The hook type (request, response, req_edit_in, .</description>
+    </item>
+    
+    <item>
+      <title>Examples</title>
+      <link>/addons-examples/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/addons-examples/</guid>
+      <description>Script examples This page provides example scripts to get familiar with Scalpel&amp;rsquo;s Python library. They are designed for real use cases.
+Table of content GZIP-ed API Cryptography using a session as a secret GZIP-ed API Let&amp;rsquo;s assume you encountered an API using a custom protocol that gzips multiple form-data fields.
+Quick-and-dirty Scalpel script to directly edit the unzipped data and find hidden secrets:
+from pyscalpel import Request, Response, logger import gzip def unzip_bytes(data): try: # Create a GzipFile object with the input data with gzip.</description>
+    </item>
+    
+    <item>
+      <title>FAQ</title>
+      <link>/overview-faq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/overview-faq/</guid>
+      <description>FAQ Table of Contents Why does Scalpel depend on JDK whereas Burp comes with its own JRE? Why using Java with Jep to execute Python whereas Burp already supports Python extensions with Jython? Once the .jar is loaded, no additional request shows up in the editor My distribution/OS comes with an outdated python. Configuring my editor for Python I installed Python using the Microsoft Store and Scalpel doesn&amp;rsquo;t work. Why does Scalpel depend on JDK whereas Burp comes with its own JRE?</description>
+    </item>
+    
+    <item>
+      <title>First steps</title>
+      <link>/tute-first-steps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tute-first-steps/</guid>
+      <description>First Steps with Scalpel Introduction Welcome to your first steps with Scalpel! This beginner-friendly tutorial will walk you through basic steps to automatically and interactively modify HTTP headers using Scalpel. By the end of this tutorial, you’ll be able to edit the content of the User-Agent and Accept-Language headers using Scalpel’s hooks and custom editors.
+Table of content Setting up Scalpel Inspecting a GET request Create a new script Manipulating headers Creating custom editors Conclusion 1.</description>
+    </item>
+    
+    <item>
+      <title>How scalpel works</title>
+      <link>/concepts-howscalpelworks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/concepts-howscalpelworks/</guid>
+      <description>How Scalpel works Table of content Dependencies Behavior Python scripting Diagram Dependencies Scalpel&amp;rsquo;s Python library is embedded in a JAR file and is unzipped when Burp loads the extension. Scalpel requires external dependencies and will install them using pip when needed. Scalpel will always use a virtual environment for every action. Hence, it will never modify the user&amp;rsquo;s global Python installation. Scalpel relies on Jep to communicate with Python. It requires to have a JDK installed on your machine.</description>
+    </item>
+    
+    <item>
+      <title>Installation</title>
+      <link>/overview-installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/overview-installation/</guid>
+      <description>Installation Requirements OpenJDK &amp;gt;= 17 Python &amp;gt;= 3.8 pip python-virtualenv Debian-based distributions The following packages are required:
+sudo apt install build-essential python3 python3-dev python3-venv openjdk-17-jdk Fedora / RHEL / CentOS The following packages are required:
+sudo dnf install @development-tools python3 python3-devel python3-virtualenv java-17-openjdk-devel Arch-based distributions The following packages are required:
+sudo pacman -S base-devel python python-pip python-virtualenv jdk-openjdk Windows Microsoft Visual C++ &amp;gt;=14.0 is required: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+Step-by-step instructions Download the latest JAR release.</description>
+    </item>
+    
+    <item>
+      <title>Intercept and rewrite HTTP traffic</title>
+      <link>/feature-http/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/feature-http/</guid>
+      <description>Event Hooks Scalpel scripts hook into Burps&amp;rsquo;s internal mechanisms through event hooks.
+These are implemented as methods with a set of well-known names. Events receive Request, Response, Flow and bytes objects as arguments. By modifying these objects, scripts can change traffic on the fly and program custom request/response editors.
+For instance, here is an script that adds a response header with the number of seen responses:
+from pyscalpel import Response count = 0 def response(res: Response) -&amp;gt; Response: global count count += 1 res.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.edit</title>
+      <link>/api/pyscalpel/edit.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/edit.html</guid>
+      <description>pyscalpel.edit Scalpel allows choosing between normal and binary editors, to do so, the user can apply the editor decorator to the req_edit_in / res_edit_int hook:
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 Scalpel allows choosing between normal and binary editors, 3 to do so, the user can apply the `editor` decorator to the `req_edit_in` / `res_edit_int` hook: 4&amp;quot;&amp;quot;&amp;quot; 5from typing import Callable, Literal, get_args 6 7EditorMode = Literal[&amp;quot;raw&amp;quot;, &amp;quot;hex&amp;quot;, &amp;quot;octal&amp;quot;, &amp;quot;binary&amp;quot;, &amp;quot;decimal&amp;quot;] 8EDITOR_MODES: set[EditorMode] = set(get_args(EditorMode)) 9 10 11def editor(mode: EditorMode): 12 &amp;quot;&amp;quot;&amp;quot;Decorator to specify the editor type for a given hook 13 14 This can be applied to a req_edit_in / res_edit_in hook declaration to specify the editor that should be displayed in Burp 15 16 Example: 17 ```py 18 @editor(&amp;quot;hex&amp;quot;) 19 def req_edit_in(req: Request) -&amp;gt; bytes | None: 20 return bytes(req) 21 ``` 22 This displays the request in an hex editor.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.encoding</title>
+      <link>/api/pyscalpel/encoding.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/encoding.html</guid>
+      <description>pyscalpel.encoding Utilities for encoding data.
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 Utilities for encoding data. 3&amp;quot;&amp;quot;&amp;quot; 4 5from urllib.parse import unquote_to_bytes as urllibdecode 6from _internal_mitmproxy.utils import strutils 7 8 9# str/bytes conversion helpers from mitmproxy/http.py: 10# https://github.com/mitmproxy/mitmproxy/blob/main/mitmproxy/http.py#:~:text=def-,_native,-(x%3A 11def always_bytes(data: str | bytes | int, encoding=&amp;quot;latin-1&amp;quot;) -&amp;gt; bytes: 12 &amp;quot;&amp;quot;&amp;quot;Convert data to bytes 13 14 Args: 15 data (str | bytes | int): The data to convert 16 17 Returns: 18 bytes: The converted bytes 19 &amp;quot;&amp;quot;&amp;quot; 20 if isinstance(data, int): 21 data = str(data) 22 return strutils.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.events</title>
+      <link>/api/pyscalpel/events.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/events.html</guid>
+      <description> pyscalpel.events Events that can be passed to the match() hook
+View Source 1&amp;quot;&amp;quot;&amp;quot;Events that can be passed to the match() hook&amp;quot;&amp;quot;&amp;quot; 2 3from typing import Literal, get_args 4 5MatchEvent = Literal[ 6 &amp;quot;request&amp;quot;, 7 &amp;quot;response&amp;quot;, 8 &amp;quot;req_edit_in&amp;quot;, 9 &amp;quot;req_edit_out&amp;quot;, 10 &amp;quot;res_edit_in&amp;quot;, 11 &amp;quot;res_edit_out&amp;quot;, 12] 13 14 15MATCH_EVENTS: set[MatchEvent] = set(get_args(MatchEvent)) MatchEvent = typing.Literal[&amp;#39;request&amp;#39;, &amp;#39;response&amp;#39;, &amp;#39;req_edit_in&amp;#39;, &amp;#39;req_edit_out&amp;#39;, &amp;#39;res_edit_in&amp;#39;, &amp;#39;res_edit_out&amp;#39;] MATCH_EVENTS: set[typing.Literal[&amp;#39;request&amp;#39;, &amp;#39;response&amp;#39;, &amp;#39;req_edit_in&amp;#39;, &amp;#39;req_edit_out&amp;#39;, &amp;#39;res_edit_in&amp;#39;, &amp;#39;res_edit_out&amp;#39;]] = {&amp;#39;request&amp;#39;, &amp;#39;res_edit_out&amp;#39;, &amp;#39;req_edit_out&amp;#39;, &amp;#39;response&amp;#39;, &amp;#39;req_edit_in&amp;#39;, &amp;#39;res_edit_in&amp;#39;} </description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.http</title>
+      <link>/api/pyscalpel/http.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/http.html</guid>
+      <description>pyscalpel.http This module contains objects representing HTTP objects passed to the user&#39;s hooks
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 This module contains objects representing HTTP objects passed to the user&amp;#39;s hooks 3&amp;quot;&amp;quot;&amp;quot; 4 5from .request import Request, Headers 6from .response import Response 7from .flow import Flow 8from .utils import match_patterns, host_is 9from . import body 10 11__all__ = [ 12 &amp;quot;body&amp;quot;, # &amp;lt;- pdoc shows a warning for this declaration but won&amp;#39;t display it when absent 13 &amp;quot;Request&amp;quot;, 14 &amp;quot;Response&amp;quot;, 15 &amp;quot;Headers&amp;quot;, 16 &amp;quot;Flow&amp;quot;, 17 &amp;quot;host_is&amp;quot;, 18 &amp;quot;match_patterns&amp;quot;, 19] class Request: View Source 70class Request: 71 &amp;quot;&amp;quot;&amp;quot;A &amp;quot;Burp oriented&amp;quot; HTTP request class 72 73 74 This class allows to manipulate Burp requests in a Pythonic way.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.http.body</title>
+      <link>/api/pyscalpel/http/body.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/http/body.html</guid>
+      <description>pyscalpel.http.body Pentesters often have to manipulate form data in precise and extensive ways
+This module contains implementations for the most common forms (multipart,urlencoded, JSON)
+Users may be implement their own form by creating a Serializer, assigning the .serializer attribute in Request and using the &#34;form&#34; property
+Forms are designed to be convertible from one to another.
+For example, JSON forms may be converted to URL encoded forms by using the php query string syntax:</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.java</title>
+      <link>/api/pyscalpel/java.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/java.html</guid>
+      <description>pyscalpel.java This module declares type definitions used for Java objects.
+If you are a normal user, you should probably never have to manipulate these objects yourself.
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 This module declares type definitions used for Java objects. 3 4 If you are a normal user, you should probably never have to manipulate these objects yourself. 5&amp;quot;&amp;quot;&amp;quot; 6from .bytes import JavaBytes 7from .import_java import import_java 8from .object import JavaClass, JavaObject 9from .</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.java.burp</title>
+      <link>/api/pyscalpel/java/burp.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/java/burp.html</guid>
+      <description>pyscalpel.java.burp This module exposes Java objects from Burp&#39;s extensions API
+If you are a normal user, you should probably never have to manipulate these objects yourself.
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2 This module exposes Java objects from Burp&amp;#39;s extensions API 3 4 If you are a normal user, you should probably never have to manipulate these objects yourself. 5&amp;quot;&amp;quot;&amp;quot; 6from .byte_array import IByteArray, ByteArray 7from .http_header import IHttpHeader, HttpHeader 8from .</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.utils</title>
+      <link>/api/pyscalpel/utils.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/utils.html</guid>
+      <description>pyscalpel.utils View Source 1import inspect 2from typing import TypeVar, Union 3from pyscalpel.burp_utils import ( 4 urldecode, 5 urlencode_all, 6) 7 8 9T = TypeVar(&amp;quot;T&amp;quot;, str, bytes) 10 11 12def removeprefix(s: T, prefix: Union[str, bytes]) -&amp;gt; T: 13 if isinstance(s, str) and isinstance(prefix, str): 14 if s.startswith(prefix): 15 return s[len(prefix) :] # type: ignore 16 elif isinstance(s, bytes) and isinstance(prefix, bytes): 17 if s.startswith(prefix): 18 return s[len(prefix) :] # type: ignore 19 return s 20 21 22def removesuffix(s: T, suffix: Union[str, bytes]) -&amp;gt; T: 23 if isinstance(s, str) and isinstance(suffix, str): 24 if s.</description>
+    </item>
+    
+    <item>
+      <title>pyscalpel.venv</title>
+      <link>/api/pyscalpel/venv.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/api/pyscalpel/venv.html</guid>
+      <description>pyscalpel.venv This module provides reimplementations of Python virtual environnements scripts
+This is designed to be used internally, but in the case where the user desires to dynamically switch venvs using this, they should ensure the selected venv has the dependencies required by Scalpel.
+View Source 1&amp;quot;&amp;quot;&amp;quot; 2This module provides reimplementations of Python virtual environnements scripts 3 4This is designed to be used internally, 5but in the case where the user desires to dynamically switch venvs using this, 6they should ensure the selected venv has the dependencies required by Scalpel.</description>
+    </item>
+    
+    <item>
+      <title>Usage</title>
+      <link>/overview-usage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/overview-usage/</guid>
+      <description>Usage Scalpel allows you to programmatically intercept and modify HTTP requests/responses going through Burp, as well as creating custom request/response editors with Python.
+To do so, Scalpel provides a Burp extension GUI for scripting and a set of predefined function names corresponding to specific actions:
+match: Determine whether an event should be handled by a hook. request: Intercept and rewrite a request. response: Intercept and rewrite a response. req_edit_in: Create or update a request editor&amp;rsquo;s content from a request.</description>
+    </item>
+    
+    <item>
+      <title>Using the Burp API</title>
+      <link>/addons-java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/addons-java/</guid>
+      <description>Using the Burp API Scalpel communicates with Burp through its Java API. Then, it provides the user with an execution context in which they should only use Python objects.
+However, since Scalpel focuses on HTTP objects, it does not provide utilities for all the Burp API features (like the ability to generate Collaborator payloads).
+If the user must deal with unhandled cases, they can directly access the MontoyaApi Java object to search for appropriate objects.</description>
+    </item>
+    
+  </channel>
+</rss>

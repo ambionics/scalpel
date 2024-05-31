@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="../favicon.ico">
+    <title>How scalpel works</title>
+    
+    
+
+    
+    <link rel="stylesheet" href="../style.min.css">
+
+    
+
+    <meta name="generator" content="Hugo 0.111.3">
+</head>
+<body>
+
+<div class="columns container is-marginless">
+    <div id="sidebar" class="column is-one-quarter">
+        <div class="brand">
+	<a href="https://www.lexfo.fr/">
+		<img src='../logo-docs.svg' alt="scalpel docs" />
+	</a>
+</div>
+
+<nav class="menu">
+	<p class="menu-label">Overview</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../">Introduction</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-installation/">Installation</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-usage/">Usage</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-faq/">FAQ</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Features</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../feature-http/">Intercept and rewrite HTTP traffic</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../feature-editors/">Custom Burp editors</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Script Development</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../api/events.html">Event Hooks &amp; API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-java/">Using the Burp API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-debugging/">Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-examples/">Examples</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Tutorials</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../tute-first-steps/">First steps</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../tute-aes/">Decrypting custom encryption</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Core concepts</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class="is-active"
+               href="../concepts-howscalpelworks/">How scalpel works</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Technical documentation</p>
+	<ul class="menu-list">
+		<li>
+			<a class="" href='../pdoc'>Python library</a>
+		</li>
+
+		<li>
+			<a class="" href='../javadoc'>Java extension</a>
+		</li>
+		<br />
+		<li>
+			<a class="" href="https://github.com/ambionics/scalpel">
+				<img
+					src='../github.svg'
+					alt="github"
+					style="
+						height: 16px;
+						vertical-align: middle;
+						margin-right: 5px;
+					"
+				/>
+				Github
+			</a>
+		</li>
+	</ul>
+</nav>
+
+    </div>
+    <div id="main" class="column content">
+        
+        
+<a
+	class="button is-small is-outlined is-link is-pulled-right"
+	target="_blank"
+	href="https://github.com/ambionics/scalpel/tree/docs/readme/docs/src/content/concepts-howscalpelworks.md"
+>
+	
+	Edit on GitHub
+</a>
+
+
+        <h1 id="how-scalpel-works"><a class="anchor" href="#how-scalpel-works">#&nbsp;&nbsp;</a>How Scalpel works</h1>
+<h2 id="table-of-content"><a class="anchor" href="#table-of-content">#&nbsp;&nbsp;</a>Table of content</h2>
+<ul>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#behavior">Behavior</a></li>
+<li><a href="#python-scripting">Python scripting</a></li>
+<li><a href="#diagram">Diagram</a></li>
+</ul>
+<h2 id="dependencies"><a class="anchor" href="#dependencies">#&nbsp;&nbsp;</a>Dependencies</h2>
+<ul>
+<li>Scalpel&rsquo;s Python library is embedded in a JAR file and is unzipped when Burp loads the extension.</li>
+<li>Scalpel requires external dependencies and will install them using <code>pip</code> when needed.</li>
+<li>Scalpel will always use a virtual environment for every action. Hence, it will never modify the user&rsquo;s global Python installation.</li>
+<li>Scalpel relies on <a href="https://github.com/ninia/jep/">Jep</a> to communicate with Python. It requires to have a JDK installed on your machine.</li>
+<li>User scripts are executed in a virtual environment selected from the <code>Scalpel</code> tab.</li>
+<li>Scalpel provides a terminal with a shell running in the selected virtual environment to easily install packages.</li>
+<li>Creating new virtual environments or adding existing ones can be done via the dedicated GUI.</li>
+<li>All data is stored in the <code>~/.scalpel</code> directory.</li>
+</ul>
+<h2 id="behavior"><a class="anchor" href="#behavior">#&nbsp;&nbsp;</a>Behavior</h2>
+<ul>
+<li>Scalpel uses the Java <a href="https://portswigger.net/burp/documentation/desktop/extensions">Burp Montoya API</a> to interact with Burp.</li>
+<li>Scalpel uses Java to handle the dependencies installation, HTTP and GUI for Burp, and communication with Python.</li>
+<li>Scalpel uses <a href="https://github.com/ninia/jep/">Jep</a> to execute Python from Java.</li>
+<li>Python execution is handled through a task queue in a dedicated thread that will execute one Python task at a time in a thread-safe way.</li>
+<li>All Python hooks are executed through a <code>_framework.py</code> file that will activate the selected venv, load the user script file, look for callable objects matching the hooks names (<code>match, request, response, req_edit_in, res_edit_in, req_edit_out, res_edit_out, req_edit_in_&lt;tab_name&gt;, res_edit_in_&lt;tab_name&gt;, req_edit_out_&lt;tab_name&gt;, res_edit_out_&lt;tab_name&gt;</code>).</li>
+<li>The <code>_framework.py</code> declares callbacks that receive Java objects, convert them to custom easy-to-use Python objects, pass the Python objects to the corresponding user hook, get back the modified Python objects and convert them back to Java objects.</li>
+<li>Java code receives the hook&rsquo;s result and interact with Burp to apply its effects.</li>
+<li>At each task, Scalpel checks whether the user script file changed. If so, it reloads and restarts the interpreter.</li>
+</ul>
+<h2 id="python-scripting"><a class="anchor" href="#python-scripting">#&nbsp;&nbsp;</a>Python scripting</h2>
+<ul>
+<li>Scalpel uses a single shared interpreter. Then, if any global variables are changed in a hook, their values remain changed in the next hook calls.</li>
+<li>For easy Python scripting, Scalpel provides many utilities described in the <a href="../api/events.html">Event Hooks &amp; API</a> section.</li>
+</ul>
+<h2 id="diagram"><a class="anchor" href="#diagram">#&nbsp;&nbsp;</a>Diagram</h2>
+<p>Here is a diagram illustating the points above:
+<figure><img src="../schematics/scalpel-diagram.svg"/>
+</figure>
+</p>
+
+
+    </div>
+</div>
+</body>
+</html>
+

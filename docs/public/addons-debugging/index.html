@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="../favicon.ico">
+    <title>Debugging</title>
+    
+    
+
+    
+    <link rel="stylesheet" href="../style.min.css">
+
+    
+
+    <meta name="generator" content="Hugo 0.111.3">
+</head>
+<body>
+
+<div class="columns container is-marginless">
+    <div id="sidebar" class="column is-one-quarter">
+        <div class="brand">
+	<a href="https://www.lexfo.fr/">
+		<img src='../logo-docs.svg' alt="scalpel docs" />
+	</a>
+</div>
+
+<nav class="menu">
+	<p class="menu-label">Overview</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../">Introduction</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-installation/">Installation</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-usage/">Usage</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-faq/">FAQ</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Features</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../feature-http/">Intercept and rewrite HTTP traffic</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../feature-editors/">Custom Burp editors</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Script Development</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../api/events.html">Event Hooks &amp; API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-java/">Using the Burp API</a>
+            
+        </li>
+    
+        <li>
+            <a class="is-active"
+               href="../addons-debugging/">Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-examples/">Examples</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Tutorials</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../tute-first-steps/">First steps</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../tute-aes/">Decrypting custom encryption</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Core concepts</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../concepts-howscalpelworks/">How scalpel works</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Technical documentation</p>
+	<ul class="menu-list">
+		<li>
+			<a class="" href='../pdoc'>Python library</a>
+		</li>
+
+		<li>
+			<a class="" href='../javadoc'>Java extension</a>
+		</li>
+		<br />
+		<li>
+			<a class="" href="https://github.com/ambionics/scalpel">
+				<img
+					src='../github.svg'
+					alt="github"
+					style="
+						height: 16px;
+						vertical-align: middle;
+						margin-right: 5px;
+					"
+				/>
+				Github
+			</a>
+		</li>
+	</ul>
+</nav>
+
+    </div>
+    <div id="main" class="column content">
+        
+        
+<a
+	class="button is-small is-outlined is-link is-pulled-right"
+	target="_blank"
+	href="https://github.com/ambionics/scalpel/tree/docs/readme/docs/src/content/addons-debugging.md"
+>
+	
+	Edit on GitHub
+</a>
+
+
+        <h1 id="debugging"><a class="anchor" href="#debugging">#&nbsp;&nbsp;</a>Debugging</h1>
+<p>Scalpel scripts can be <strong>hard to debug</strong>, as you cannot run them outside of Burp.</p>
+<p>Also it is difficult to know if a bug is related to Scalpel/Burp context or to the user&rsquo;s implementation.</p>
+<p>Here are a few advices for debugging Scalpel errors.</p>
+<h2 id="finding-stacktraces"><a class="anchor" href="#finding-stacktraces">#&nbsp;&nbsp;</a>Finding stacktraces</h2>
+<p>Errors that occur in scripts can be found in different places:</p>
+<h3 id="1-the-output-tab"><a class="anchor" href="#1-the-output-tab">#&nbsp;&nbsp;</a>1. The <strong>Output</strong> tab</h3>
+<p>In the <strong>Scalpel</strong> tab, there is a sub-tab named <strong>Script Output</strong>, it shows all the standard output and error contents outputted by the current script
+<figure><img src="../screenshots/output.png"/>
+</figure>
+</p>
+<h3 id="2-the-error-popus"><a class="anchor" href="#2-the-error-popus">#&nbsp;&nbsp;</a>2. The error popus</h3>
+<p>When an error happens in the hooks <strong>request()</strong> and <strong>response()</strong>, a popup is displayed.
+<figure><img src="../screenshots/error-popup.png"/>
+</figure>
+</p>
+<p>This popup can be disabled in the Settings tab</p>
+<h3 id="3-the-dashboard-event-log"><a class="anchor" href="#3-the-dashboard-event-log">#&nbsp;&nbsp;</a>3. The dashboard event log</h3>
+<p><figure><img src="../screenshots/debug-image.png"/>
+</figure>
+
+The user may click on the events to get the full error message:
+<figure><img src="../screenshots/debug-image-1.png"/>
+</figure>
+</p>
+<h3 id="4-the-extensions-logs"><a class="anchor" href="#4-the-extensions-logs">#&nbsp;&nbsp;</a>4. The extensions logs</h3>
+<figure><img src="../screenshots/debug-image-2.png"/>
+</figure>
+
+<h3 id="5-the-command-line-output-best"><a class="anchor" href="#5-the-command-line-output-best">#&nbsp;&nbsp;</a>5. The command line output <strong>(best)</strong></h3>
+<figure><img src="../screenshots/debug-image-3.png"/>
+</figure>
+
+<blockquote>
+<p>💡 When debugging, it is best to launch Burp in CLI, as the CLI output will contain absolutely all errors and logs, which is not always the case in the Burp GUI (e.g: In case of deadlocks, crashes and other tricky issues).</p>
+</blockquote>
+
+
+    </div>
+</div>
+</body>
+</html>
+

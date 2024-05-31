@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" type="image/png" href="../favicon.ico">
+    <title>FAQ</title>
+    
+    
+
+    
+    <link rel="stylesheet" href="../style.min.css">
+
+    
+
+    <meta name="generator" content="Hugo 0.111.3">
+</head>
+<body>
+
+<div class="columns container is-marginless">
+    <div id="sidebar" class="column is-one-quarter">
+        <div class="brand">
+	<a href="https://www.lexfo.fr/">
+		<img src='../logo-docs.svg' alt="scalpel docs" />
+	</a>
+</div>
+
+<nav class="menu">
+	<p class="menu-label">Overview</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../">Introduction</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-installation/">Installation</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../overview-usage/">Usage</a>
+            
+        </li>
+    
+        <li>
+            <a class="is-active"
+               href="../overview-faq/">FAQ</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Features</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../feature-http/">Intercept and rewrite HTTP traffic</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../feature-editors/">Custom Burp editors</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Script Development</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../api/events.html">Event Hooks &amp; API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-java/">Using the Burp API</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-debugging/">Debugging</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../addons-examples/">Examples</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Tutorials</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../tute-first-steps/">First steps</a>
+            
+        </li>
+    
+        <li>
+            <a class=""
+               href="../tute-aes/">Decrypting custom encryption</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Core concepts</p>
+	<ul class="menu-list">
+    
+    
+    
+    
+        <li>
+            <a class=""
+               href="../concepts-howscalpelworks/">How scalpel works</a>
+            
+        </li>
+    
+</ul>
+
+
+	<p class="menu-label">Technical documentation</p>
+	<ul class="menu-list">
+		<li>
+			<a class="" href='../pdoc'>Python library</a>
+		</li>
+
+		<li>
+			<a class="" href='../javadoc'>Java extension</a>
+		</li>
+		<br />
+		<li>
+			<a class="" href="https://github.com/ambionics/scalpel">
+				<img
+					src='../github.svg'
+					alt="github"
+					style="
+						height: 16px;
+						vertical-align: middle;
+						margin-right: 5px;
+					"
+				/>
+				Github
+			</a>
+		</li>
+	</ul>
+</nav>
+
+    </div>
+    <div id="main" class="column content">
+        
+        
+<a
+	class="button is-small is-outlined is-link is-pulled-right"
+	target="_blank"
+	href="https://github.com/ambionics/scalpel/tree/docs/readme/docs/src/content/overview-faq.md"
+>
+	
+	Edit on GitHub
+</a>
+
+
+        <h1 id="faq"><a class="anchor" href="#faq">#&nbsp;&nbsp;</a>FAQ</h1>
+<h2 id="table-of-contents"><a class="anchor" href="#table-of-contents">#&nbsp;&nbsp;</a>Table of Contents</h2>
+<ol>
+<li><a href="#why-does-scalpel-depend-on-jdk-whereas-burp-comes-with-its-own-jre">Why does Scalpel depend on JDK whereas Burp comes with its own JRE?</a></li>
+<li><a href="#why-using-java-with-jep-to-execute-python-whereas-burp-already-supports-python-extensions-with-jython">Why using Java with Jep to execute Python whereas Burp already supports Python extensions with Jython?</a></li>
+<li><a href="#once-the-jar-is-loaded-no-additional-request-shows-up-in-the-editor">Once the .jar is loaded, no additional request shows up in the editor</a></li>
+<li><a href="#scalpel-requires-python-310-but-my-distribution-is-outdated-and-i-cant-install-such-recent-python-versions-using-the-package-manager">My distribution/OS comes with an outdated python.</a></li>
+<li><a href="#how-can-i-configure-my-editor-to-recognize-the-python-library">Configuring my editor for Python</a></li>
+<li><a href="#i-installed-python-using-the-microsoft-store-and-scalpel-doesnt-work">I installed Python using the Microsoft Store and Scalpel doesn&rsquo;t work.</a></li>
+</ol>
+<hr>
+<h3 id="why-does-scalpel-depend-on-jdk-whereas-burp-comes-with-its-own-jre"><a class="anchor" href="#why-does-scalpel-depend-on-jdk-whereas-burp-comes-with-its-own-jre">#&nbsp;&nbsp;</a>Why does Scalpel depend on JDK whereas Burp comes with its own JRE?</h3>
+<ul>
+<li>Scalpel uses a project called <a href="https://github.com/ninia/jep/wiki/"><code>jep</code></a> to call Python from Java. <code>jep</code> needs a JDK to function.</li>
+<li>If you are curious or need more technical information about Scalpel&rsquo;s implementation, read <a href="../concepts-howscalpelworks/">How scalpel works</a>.</li>
+</ul>
+<h3 id="why-using-java-with-jep-to-execute-python-whereas-burp-already-supports-python-extensions-with-jythonhttpswwwjythonorg"><a class="anchor" href="#why-using-java-with-jep-to-execute-python-whereas-burp-already-supports-python-extensions-with-jythonhttpswwwjythonorg">#&nbsp;&nbsp;</a>Why using Java with Jep to execute Python whereas Burp already supports Python extensions with <a href="https://www.jython.org/">Jython</a>?</h3>
+<ul>
+<li>Jython supports up to Python 2.7. Unfortunately, Python 3 is not handled at all. Python 2.7 is basically a dead language and nobody should still be using it.</li>
+<li>Burp&rsquo;s developers released a <a href="https://portswigger.net/burp/documentation/desktop/extensions/creating">new API</a> for extensions and deprecated the former one. The new version only supports Java. That&rsquo;s why the most appropriate choice was to reimplement a partial Python scripting support for Burp.</li>
+</ul>
+<h3 id="once-the-jar-is-loaded-no-additional-request-shows-up-in-the-editor"><a class="anchor" href="#once-the-jar-is-loaded-no-additional-request-shows-up-in-the-editor">#&nbsp;&nbsp;</a>Once the .jar is loaded, no additional request shows up in the editor!</h3>
+<ul>
+<li>When first installing Scalpel, the installation of all its dependencies may take a while. Look at the &ldquo;Output&rdquo; logs in the Burp &ldquo;Extension&rdquo; tab to ensure that the extension has completed.</li>
+<li>Examine the &ldquo;Errors&rdquo; logs in the Burp &ldquo;Extension&rdquo; tab. There should be an explicit error message with some tips to solve the problem.</li>
+<li>Make sure you followed the <a href="../install.md">installation guidelines</a>. In case you didn&rsquo;t, remove the <code>~/.scalpel</code> directory and try one more time.</li>
+<li>If the error message doesn&rsquo;t help, please open a GitHub issue including the &ldquo;Output&rdquo; and &ldquo;Errors&rdquo; logs, and your system information (OS / Distribution version, CPU architecture, JDK and Python version and installation path, environment variables which Burp runs with, and so forth).</li>
+</ul>
+<h3 id="scalpel-requires-python-38-but-my-distribution-is-outdated-and-i-cant-install-such-recent-python-versions-using-the-package-manager"><a class="anchor" href="#scalpel-requires-python-38-but-my-distribution-is-outdated-and-i-cant-install-such-recent-python-versions-using-the-package-manager">#&nbsp;&nbsp;</a>Scalpel requires python &gt;=3.8 but my distribution is outdated and I can&rsquo;t install such recent Python versions using the package manager.</h3>
+<ul>
+<li>Try updating your distribution.</li>
+<li>If that is not possible, you must setup a separate Python &gt;=3.8 installation and run Burp with the appropriate environment so this separate installation is used.
+<blockquote>
+<p>💡 Tip: Use <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a> to easily install different Python versions and switch between them.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="how-can-i-configure-my-editor-to-recognize-the-python-library"><a class="anchor" href="#how-can-i-configure-my-editor-to-recognize-the-python-library">#&nbsp;&nbsp;</a>How can I configure my editor to recognize the Python library</h3>
+<ul>
+<li>
+<p>Python modules are extracted in <code>~/.scalpel/.extracted/python</code>, adding this to your PYTHONPATH should do it.</p>
+</li>
+<li>
+<p>For <strong>VSCode users</strong>, Scalpel extracts a .vscode containing the correct settings in the scripts directory, so you can simply open the folder and it should work out of the box.</p>
+<ul>
+<li>
+<p>Alternatively, you can use the following <code>settings.json</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JSON" data-lang="JSON"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;terminal.integrated.env.linux&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;PYTHONPATH&#34;</span><span class="p">:</span> <span class="s2">&#34;${env:HOME}/.scalpel/extracted/python:${env:PYTHONPATH}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;PATH&#34;</span><span class="p">:</span> <span class="s2">&#34;${env:HOME}/.scalpel/extracted/python:${env:PATH}&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// &#39;~&#39; or ${env:HOME} is not supported by this setting, it must be replaced manually.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nt">&#34;python.analysis.extraPaths&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;&lt;REPLACE_WITH_ABSOLUTE_HOME_PATH&gt;/.extracted/python&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h3 id="i-installed-python-using-the-microsoft-store-and-scalpel-doesnt-work"><a class="anchor" href="#i-installed-python-using-the-microsoft-store-and-scalpel-doesnt-work">#&nbsp;&nbsp;</a>I installed Python using the Microsoft Store and Scalpel doesn&rsquo;t work.</h3>
+<ul>
+<li>The Microsoft Store Python is a sandboxed version designed for educational purposes. Many of its behaviors are incompatible with Scalpel. To use Scalpel on Windows, it is required to install Python from the <a href="https://www.python.org/downloads/windows/">official source</a>.</li>
+</ul>
+<h3 id="error-command-usrbinx86_64-linux-gnu-gcc-failed-with-exit-code-1"><a class="anchor" href="#error-command-usrbinx86_64-linux-gnu-gcc-failed-with-exit-code-1">#&nbsp;&nbsp;</a>error: <code>command '/usr/bin/x86_64-linux-gnu-gcc' failed with exit code 1</code></h3>
+<ul>
+<li>Some users encouter this error when the python developpement libraries are missing:</li>
+</ul>
+<pre tabindex="0"><code>x86_64-linux-gnu-gcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -fPIC -DPACKAGE=jep -DUSE_DEALLOC=1 -DJEP_NUMPY_ENABLED=0 -DVERSION=\&#34;4.1.1\&#34; -DPYTHON_LDLIBRARY=\&#34;libpython3.10.so\&#34; -I/usr/lib/jvm/java-11-openjdk-amd64/include -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux -Isrc/main/c/Include -Ibuild/include -I/home/&lt;user&gt;/.scalpel/venvs/default/.venv/include -I/usr/include/python3.10 -c src/main/c/Jep/convert_j2p.c -o build/temp.linux-x86_64-cpython-310/src/main/c/Jep/convert_j2p.o
+      In file included from src/main/c/Include/Jep.h:35,
+                       from src/main/c/Jep/convert_j2p.c:28:
+      src/main/c/Include/jep_platform.h:35:10: fatal error: Python.h: Aucun fichier ou dossier de ce type
+         35 | #include &lt;Python.h&gt;
+            |          ^~~~~~~~~~
+      compilation terminated.
+      error: command &#39;/usr/bin/x86_64-linux-gnu-gcc&#39; failed with exit code 1
+      [end of output]
+</code></pre><ul>
+<li>Make sure you installed the python3-dev libraries for your python version
+<a href="https://stackoverflow.com/a/57698471">https://stackoverflow.com/a/57698471</a></li>
+</ul>
+
+
+    </div>
+</div>
+</body>
+</html>
+
