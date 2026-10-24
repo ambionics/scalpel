@@ -5,6 +5,7 @@ import burp.api.montoya.ui.Theme;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jediterm.pty.PtyProcessTtyConnector;
+import com.jediterm.terminal.ProcessTtyConnector;
 import com.jediterm.terminal.TerminalColor;
 import com.jediterm.terminal.TextStyle;
 import com.jediterm.terminal.TtyConnector;
@@ -144,7 +145,8 @@ public class Terminal {
 				List.of(
 					Constants.DEFAULT_UNIX_SHELL,
 					"--init-file",
-					initFilePath
+					initFilePath,
+					"-i"
 				)
 			);
 
@@ -183,11 +185,37 @@ public class Terminal {
 					.setInitialColumns((int) d.getWidth())
 			);
 
-			final PtyProcess processs = builder.start();
+			final PtyProcess ptyProcess = builder.start();
 
-			return new PtyProcessTtyConnector(processs, StandardCharsets.UTF_8);
-		} catch (Throwable e) {
-			throw new IllegalStateException(e);
+			return new PtyProcessTtyConnector(ptyProcess, StandardCharsets.UTF_8);
+		} catch (Exception | LinkageError ptyError) {
+			ScalpelLogger.warn(
+				"Native PTY initialization failed; using a basic process terminal.\n" +
+				ScalpelLogger.exceptionToErrorMsg(ptyError, "PTY failure")
+			);
+
+			try {
+				final ProcessBuilder builder = new ProcessBuilder(commandToRun)
+					.directory(new File(cwd.orElse(workspacePath)));
+				builder.environment().clear();
+				builder.environment().putAll(env);
+
+				final Process process = builder.start();
+				return new ProcessTtyConnector(process, StandardCharsets.UTF_8) {
+					@Override
+					public String getName() {
+						return "Local process (PTY fallback)";
+					}
+
+					@Override
+					public boolean isConnected() {
+						return process.isAlive();
+					}
+				};
+			} catch (Exception fallbackError) {
+				fallbackError.addSuppressed(ptyError);
+				throw new IllegalStateException(fallbackError);
+			}
 		}
 	}
 
