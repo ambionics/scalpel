@@ -267,7 +267,7 @@ public class ScalpelExecutor {
 
 	private Optional<ScalpelEditorProvider> editorProvider = Optional.empty();
 
-	private Boolean isEnabled;
+	private volatile boolean isEnabled;
 
 	private final OutputStream pythonStdout = new OutputStream() {
 		@Override
@@ -337,6 +337,12 @@ public class ScalpelExecutor {
 
 	public void enable() {
 		this.isEnabled = true;
+		// Editors created while Scalpel was disabled contain no Python-backed
+		// tabs because callback discovery is skipped in that state. Recreate
+		// all live editors so enabling takes effect immediately.
+		this.editorProvider.ifPresent(
+			ScalpelEditorProvider::resetEditorsAsync
+		);
 	}
 
 	public void disable() {
