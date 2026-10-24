@@ -1,0 +1,11 @@
+{
+	"terminal.integrated.env.linux": {
+		"PYTHONPATH": "${env:HOME}/.scalpel/extracted/python3-10:${env:HOME}/.scalpel/extracted/python3-8::${env:PYTHONPATH}",
+		"PATH": "${env:HOME}/.scalpel/extracted/python3-10:${env:HOME}/.scalpel/extracted/python3-8:${env:PATH}"
+	},
+
+	"python.analysis.extraPaths": [
+		"../../extracted/python3-10",
+		"../../extracted/python3-8"
+	]
+}

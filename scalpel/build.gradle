@@ -13,18 +13,21 @@ java {
 }
 
 group 'lexfo'
-version '1.0.0'
+version '1.0.1'
 
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
+    maven {
+        url "https://packages.jetbrains.team/maven/p/ij/intellij-dependencies"
+    }
 }
 
 
 
 dependencies {
-    implementation 'net.portswigger.burp.extensions:montoya-api:2023.10.1'
+    // Burp provides the Montoya API at runtime; only compile against it.
+    compileOnly 'net.portswigger.burp.extensions:montoya-api:2023.10.1'
     
     // https://mvnrepository.com/artifact/black.ninia/jep
     implementation 'black.ninia:jep:4.2.0'
@@ -36,7 +39,7 @@ dependencies {
     implementation 'org.jetbrains.jediterm:jediterm-pty:2.42'
     implementation 'com.google.guava:guava:31.0.1-jre'
     implementation 'log4j:log4j:1.2.17'
-    implementation 'org.jetbrains.pty4j:pty4j:0.12.11'
+    implementation 'org.jetbrains.pty4j:pty4j:0.14.0'
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0-rc2'
 

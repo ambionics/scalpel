@@ -267,7 +267,7 @@ public class ScalpelExecutor {
 
 	private Optional<ScalpelEditorProvider> editorProvider = Optional.empty();
 
-	private Boolean isEnabled;
+	private volatile boolean isEnabled;
 
 	private final OutputStream pythonStdout = new OutputStream() {
 		@Override
@@ -337,6 +337,12 @@ public class ScalpelExecutor {
 
 	public void enable() {
 		this.isEnabled = true;
+		// Editors created while Scalpel was disabled contain no Python-backed
+		// tabs because callback discovery is skipped in that state. Recreate
+		// all live editors so enabling takes effect immediately.
+		this.editorProvider.ifPresent(
+			ScalpelEditorProvider::resetEditorsAsync
+		);
 	}
 
 	public void disable() {
@@ -415,6 +421,10 @@ public class ScalpelExecutor {
 		final Result<Object, Throwable> result = addTask(name, args, kwargs)
 			.await();
 
+		if (result.isEmpty()) {
+			return Result.empty();
+		}
+
 		if (result.hasValue()) {
 			try {
 				final Object rawResult = result.getValue();
@@ -436,7 +446,7 @@ public class ScalpelExecutor {
 				return Result.error(e);
 			}
 		}
-		// Convert the Result object
+		// Preserve the task error while converting the Result's value type.
 		return Result.error(result.getError());
 	}
 

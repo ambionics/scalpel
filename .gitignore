@@ -20,6 +20,7 @@ burp-extensions-montoya-api-examples/
 
 # Package Files #
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -68,3 +69,6 @@ macosinstall.md
 a.java
 python3.8/
 python3-8/
+
+# Include .vscode resource that is a legitimate part of the build
+!scalpel/src/main/resources/venv/.vscode

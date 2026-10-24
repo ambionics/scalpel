@@ -1,8 +1,11 @@
 package lexfo.scalpel;
 
 import burp.api.montoya.logging.Logging;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -47,6 +50,21 @@ public class ScalpelLogger {
 	}
 
 	private static Logging logger = null;
+
+	private static void withLogger(Consumer<Logging> action) {
+		final Logging currentLogger = logger;
+		if (currentLogger == null) {
+			return;
+		}
+
+		try {
+			action.accept(currentLogger);
+		} catch (RuntimeException e) {
+			// Burp can invalidate its logging proxy while an extension is unloading.
+			// Standard error remains available and must not trigger another failure.
+			System.err.println("Burp logging is unavailable: " + e);
+		}
+	}
 
 	/**
 	 * Set the Burp logger instance to use.
@@ -133,13 +151,15 @@ public class ScalpelLogger {
 				break;
 			case FATAL:
 				System.err.println(msg);
-				logger.logToError(msg);
-				logger.raiseCriticalEvent(msg);
+				withLogger(currentLogger -> {
+					currentLogger.logToError(msg);
+					currentLogger.raiseCriticalEvent(msg);
+				});
 				ConfigTab.putStringToOutput(msg, false);
 				break;
 			default:
 				System.out.println(msg);
-				logger.logToOutput(msg);
+				withLogger(currentLogger -> currentLogger.logToOutput(msg));
 		}
 	}
 
@@ -161,10 +181,10 @@ public class ScalpelLogger {
 	 */
 	public static void error(String msg) {
 		System.err.println(msg);
-		if (logger != null) {
-			logger.logToError(msg);
-			logger.raiseErrorEvent(msg);
-		}
+		withLogger(currentLogger -> {
+			currentLogger.logToError(msg);
+			currentLogger.raiseErrorEvent(msg);
+		});
 	}
 
 	private static String stackTraceToString(StackTraceElement[] elems) {
@@ -175,12 +195,14 @@ public class ScalpelLogger {
 	}
 
 	public static String exceptionToErrorMsg(Throwable throwed, String title) {
+		final StringWriter stackTrace = new StringWriter();
+		throwed.printStackTrace(new PrintWriter(stackTrace));
+
 		return (
 			"ERROR:\n" +
 			title +
 			"\n" +
-			throwed.toString() +
-			stackTraceToString(throwed.getStackTrace())
+			stackTrace
 		);
 	}
 
