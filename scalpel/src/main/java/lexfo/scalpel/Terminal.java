@@ -18,6 +18,7 @@ import com.pty4j.PtyProcess;
 import com.pty4j.PtyProcessBuilder;
 import java.awt.Dimension;
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -27,6 +28,40 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Terminal {
+
+	private static final Object JNA_INITIALIZATION_LOCK = new Object();
+
+	private static void restoreSystemProperty(
+		String property,
+		String previousValue
+	) {
+		if (previousValue == null) {
+			System.clearProperty(property);
+		} else {
+			System.setProperty(property, previousValue);
+		}
+	}
+
+	private static PtyProcess startPty(PtyProcessBuilder builder)
+		throws IOException {
+		// Burp can disable JNA classpath loading and native extraction globally.
+		// Pty4j ships its matching JNA native in Scalpel's JAR, so enable those
+		// operations only while this class loader initializes JNA, then leave
+		// Burp's process-wide configuration exactly as it was.
+		synchronized (JNA_INITIALIZATION_LOCK) {
+			final String noClasspath = System.getProperty("jna.noclasspath");
+			final String noUnpack = System.getProperty("jna.nounpack");
+
+			try {
+				System.setProperty("jna.noclasspath", "false");
+				System.setProperty("jna.nounpack", "false");
+				return builder.start();
+			} finally {
+				restoreSystemProperty("jna.noclasspath", noClasspath);
+				restoreSystemProperty("jna.nounpack", noUnpack);
+			}
+		}
+	}
 
 	private static SettingsProvider createSettingsProvider(Theme theme) {
 		return new DefaultSettingsProvider() {
@@ -185,7 +220,7 @@ public class Terminal {
 					.setInitialColumns((int) d.getWidth())
 			);
 
-			final PtyProcess ptyProcess = builder.start();
+			final PtyProcess ptyProcess = startPty(builder);
 
 			return new PtyProcessTtyConnector(ptyProcess, StandardCharsets.UTF_8);
 		} catch (Exception | LinkageError ptyError) {
