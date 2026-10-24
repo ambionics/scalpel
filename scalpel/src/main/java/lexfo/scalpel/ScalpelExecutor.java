@@ -415,6 +415,10 @@ public class ScalpelExecutor {
 		final Result<Object, Throwable> result = addTask(name, args, kwargs)
 			.await();
 
+		if (result.isEmpty()) {
+			return Result.empty();
+		}
+
 		if (result.hasValue()) {
 			try {
 				final Object rawResult = result.getValue();
@@ -436,7 +440,7 @@ public class ScalpelExecutor {
 				return Result.error(e);
 			}
 		}
-		// Convert the Result object
+		// Preserve the task error while converting the Result's value type.
 		return Result.error(result.getError());
 	}
 

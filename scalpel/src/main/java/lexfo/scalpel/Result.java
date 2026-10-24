@@ -2,6 +2,7 @@ package lexfo.scalpel;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -29,7 +30,7 @@ public class Result<T, E extends Throwable> {
 	}
 
 	public static <T, E extends Throwable> Result<T, E> success(T value) {
-		return new Result<>(value, null, false);
+		return value == null ? empty() : new Result<>(value, null, false);
 	}
 
 	public static <T, E extends Throwable> Result<T, E> empty() {
@@ -37,7 +38,11 @@ public class Result<T, E extends Throwable> {
 	}
 
 	public static <T, E extends Throwable> Result<T, E> error(E error) {
-		return new Result<>(null, error, false);
+		return new Result<>(
+			null,
+			Objects.requireNonNull(error, "error cannot be null"),
+			false
+		);
 	}
 
 	public boolean isSuccess() {
@@ -85,7 +90,7 @@ public class Result<T, E extends Throwable> {
 
 	public <U> Result<U, E> map(Function<? super T, ? extends U> mapper) {
 		if (isSuccess() && !isEmpty) {
-			return new Result<>(mapper.apply(value), null, false);
+			return Result.success(mapper.apply(value));
 		} else if (isEmpty) {
 			return empty();
 		} else {
